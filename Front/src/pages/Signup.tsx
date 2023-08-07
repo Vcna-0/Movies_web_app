@@ -1,7 +1,10 @@
+import SignupForm from "../components/SignupForm.tsx";
+
 const Signup = () => {
     return (
         <div>
-            <h1>Signup</h1>
+            <h1>Sign Up</h1>
+            <SignupForm/>
         </div>
     );
 };
