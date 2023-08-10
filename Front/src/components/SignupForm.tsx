@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler  } from "react-hook-form";
+import axios from "axios";
 
 type Inputs = {
     email: string,
@@ -9,8 +10,24 @@ type Inputs = {
 
 const SignupForm = () => {
 
-    const { register, handleSubmit, watch, formState: { errors, isSubmitted  } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+    const { register, handleSubmit, watch, formState: { errors, isSubmitted } } = useForm<Inputs>();
+
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        const { email, password } = data;
+        console.log("avant le try");
+        console.log(data);
+        
+        try {
+            const response = await axios.post("http://localhost:3000/api/auth/signup", { email, password });
+            console.log("dans le try");
+            console.log(response.data);
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.log("dans le catch");
+                return <p>Une erreur est survenue lors de l'inscription.</p>;
+            }
+        }
+    };
 
     const password = watch("password", "");
 
