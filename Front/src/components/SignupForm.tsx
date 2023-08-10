@@ -7,23 +7,18 @@ type Inputs = {
     confirmPassword: string,
 };
 
-
 const SignupForm = () => {
-
     const { register, handleSubmit, watch, formState: { errors, isSubmitted } } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const { email, password } = data;
-        console.log("avant le try");
-        console.log(data);
-        
+
         try {
             const response = await axios.post("http://localhost:3000/api/auth/signup", { email, password });
-            console.log("dans le try");
             console.log(response.data);
+
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                console.log("dans le catch");
                 return <p>Une erreur est survenue lors de l'inscription.</p>;
             }
         }
