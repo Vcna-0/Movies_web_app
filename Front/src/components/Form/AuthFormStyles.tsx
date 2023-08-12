@@ -18,14 +18,6 @@ export const StyledFormContainer = styled.div`
     width: 25rem;
 `;
 
-export const StyledTitle = styled.h1`
-    color: #FFF;
-    font-family: 'Outfit', sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-`;
 
 export const StyledForm = styled.form`
     display: flex;
@@ -84,3 +76,6 @@ export const StyledLoginLink = styled.a`
     color: #FC4747;
 `;
 
+export const StyledErrorText = styled.p`
+    color: #FC4747;
+`;
