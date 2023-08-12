@@ -1,6 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
+import { useState } from "react";
 import { StyledButton, StyledForm, StyledInput, StyledLoginPrompt, StyledLoginLink } from "./AuthFormStyles.tsx";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
     email: string,
@@ -13,19 +15,29 @@ type Props = {
 }
 
 const AuthForm = ({ mode }: Props) => {
+    
+    const navigate = useNavigate();
+
     const { register, handleSubmit, watch, formState: { errors, isSubmitted } } = useForm<Inputs>();
+    const [apiError, setApiError] = useState<string | null>(null);
+
+    
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const { email, password } = data;
 
         try {
-            // const response = await axios.post("http://localhost:3000/api/auth/signup", { email, password });
-            const response = await axios.post(`http://localhost:3000/api/auth/${mode}`, { email, password });
-            console.log(response.data);
+            await axios.post(`http://localhost:3000/api/auth/${mode}`, { email, password }); 
+            navigate('/')
 
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                return <p>Une erreur est survenue lors de l'inscription.</p>;
+                const errorMessage = error.response?.data?.message;
+
+                setApiError(errorMessage ||(mode === "login" ? 
+                    "Une erreur est survenue lors de la connexion."
+                    : "Une erreur est survenue lors de l'inscription.")
+                );
             }
         }
     };
@@ -49,6 +61,7 @@ const AuthForm = ({ mode }: Props) => {
                 )}
                 <StyledButton type="submit" value={mode === 'signup' ? "Create an account" : "Log in"}/>
                 <StyledLoginPrompt>{ promptText }<StyledLoginLink href={mode === 'signup' ? '/login' : '/signup'}>{linkText}</StyledLoginLink></StyledLoginPrompt>
+                {apiError && <p>{apiError}</p>}
             </StyledForm>
     );
 };
