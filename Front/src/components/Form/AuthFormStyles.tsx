@@ -4,72 +4,60 @@ export const StyledMainForm = styled.main`
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap : 5.125rem;
-    margin-top: 4.875rem;
+    gap : 3.625rem;
+    margin-top: 48px;
 `;
-
-export const StyledFormContainer = styled.div`
-    background: #161D2F;
-    border-radius: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding: 32px;
-    width: 25rem;
-`;
-
 
 export const StyledForm = styled.form`
+    background: #161D2F;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    gap: 24px;    
-    align-items: center;
+    gap: 2.5rem;
+    max-width: 400px;
+    padding: 1.5rem 1.5rem 2rem;
+    width: 90%;
+`;
+
+export const StyledInputsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
 `;
 
 export const StyledInput = styled.input`
-    //=== Layout+
     background: transparent;
     border: none;
-    border-bottom: .0625rem solid #5A698F;
-    height: 37px;
-    width: 100%;
-    // width: 336px;
-    
-    //=== Typography
-    color : #FFF;
+    border-bottom: 1px solid #5A698F;
+    color : hsla(0, 0%, 100%, 0.5);
     font-family: Outfit;
-    font-size: .9375rem;
-    font-style: normal;
+    font-size: 15px;
     font-weight: 300;
-    line-height: normal;
+    padding: 0 1rem 1.125rem;
+    width: 100%;
 `;
 
 export const StyledButton = styled.input`
-    //=== Layout
     background: #FC4747;
-    border-radius: 6px;
     border: none;
-    height: 48px;
-    width: 336px;
-    cursor: pointer;
-    
-    //=== Typography
+    border-radius: .375rem;
     color: #FFF;
-    text-align: center;
+    cursor: pointer;
     font-family: Outfit;
-    font-size: .9375rem;
-    font-style: normal;
+    font-size: 15px;
     font-weight: 300;
-    line-height: normal;
+    text-align: center;
+    height: 3rem;
+    width: 100%;
 `;
 
 export const StyledLoginPrompt = styled.label`
     color: #fff;
     font-family: Outfit;
-    font-size: .9375rem;
-    font-style: normal;
+    font-size: 15px;
     font-weight: 300;
-    line-height: normal;
+    text-align: center;
 `;
 
 export const StyledLoginLink = styled.a`
