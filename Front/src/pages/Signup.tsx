@@ -1,11 +1,17 @@
-import SignupForm from "../components/SignupForm.tsx";
+import AuthForm from "../components/Form/AuthForm.tsx";
+import { StyledTitle, StyledFormContainer } from "../styles/styles.tsx";
+
+
 
 const Signup = () => {
     return (
         <div>
-            <h1>Sign Up</h1>
-            <SignupForm/>
+            <StyledFormContainer>
+                <StyledTitle>Sign Up</StyledTitle>
+                <AuthForm mode="signup"/>
+            </StyledFormContainer>
         </div>
+        
     );
 };
 
