@@ -21,8 +21,6 @@ const AuthForm = ({ mode }: Props) => {
     const { register, handleSubmit, watch, formState: { errors, isSubmitted } } = useForm<Inputs>();
     const [apiError, setApiError] = useState<string | null>(null);
 
-    
-
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const { email, password } = data;
 
