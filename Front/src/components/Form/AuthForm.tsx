@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
-import { StyledButton, StyledForm, StyledInput, StyledLoginPrompt, StyledLoginLink } from "./AuthFormStyles.tsx";
+import { StyledButton, StyledForm, StyledInput, StyledLoginPrompt, StyledLoginLink, StyledErrorText } from "./AuthFormStyles.tsx";
 import { useNavigate } from "react-router-dom";
 
 type Inputs = {
@@ -61,7 +61,7 @@ const AuthForm = ({ mode }: Props) => {
                 )}
                 <StyledButton type="submit" value={mode === 'signup' ? "Create an account" : "Log in"}/>
                 <StyledLoginPrompt>{ promptText }<StyledLoginLink href={mode === 'signup' ? '/login' : '/signup'}>{linkText}</StyledLoginLink></StyledLoginPrompt>
-                {apiError && <p>{apiError}</p>}
+                {apiError && <StyledErrorText>{apiError}</StyledErrorText>}
             </StyledForm>
     );
 };

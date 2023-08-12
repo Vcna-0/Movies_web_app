@@ -1,6 +1,7 @@
 import AuthForm from "../components/Form/AuthForm.tsx";
-import { StyledMainForm, StyledFormContainer, StyledTitle } from "../components/Form/AuthFormStyles.tsx";
 import logo from "../assets/MovieIcon.svg";
+import { StyledMainForm, StyledFormContainer } from "../components/Form/AuthFormStyles.tsx";
+import { StyledTitle } from "../styles/globalStyle.tsx";
 
 
 const Signup = () => {
@@ -12,7 +13,6 @@ const Signup = () => {
                 <AuthForm mode="signup"/>
             </StyledFormContainer>
         </StyledMainForm>
-        
     );
 };
 

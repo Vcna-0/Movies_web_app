@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import styled from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
     *,
@@ -13,4 +14,13 @@ export const GlobalStyles = createGlobalStyle`
     font-family: Outfit, 'Montserrat', sans-serif;
     background-color: #10141E;
     }
+`;
+
+export const StyledTitle = styled.h1`
+    color: #FFF;
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
 `;
