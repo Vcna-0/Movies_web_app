@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
-import { StyledButton, StyledForm, StyledInput, StyledLoginPrompt, StyledLoginLink } from "../../styles/styles.tsx";
+import { StyledButton, StyledForm, StyledInput, StyledLoginPrompt, StyledLoginLink } from "./AuthFormStyles.tsx";
 
 type Inputs = {
     email: string,
@@ -31,6 +31,8 @@ const AuthForm = ({ mode }: Props) => {
     };
 
     const password = watch("password", "");
+    const promptText = mode === "signup" ? "Already have an account? " : "Don't have an account? ";
+    const linkText = mode === "signup" ? "Log in" : "Sign up";
 
     return (
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -45,8 +47,8 @@ const AuthForm = ({ mode }: Props) => {
                         {isSubmitted && errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
                     </>
                 )}
-                <StyledButton type="submit" value="Create an account"/>
-                <StyledLoginPrompt>Already have an account? <StyledLoginLink href="/login">Log in</StyledLoginLink></StyledLoginPrompt>
+                <StyledButton type="submit" value={mode === 'signup' ? "Create an account" : "Log in"}/>
+                <StyledLoginPrompt>{ promptText }<StyledLoginLink href={mode === 'signup' ? '/login' : '/signup'}>{linkText}</StyledLoginLink></StyledLoginPrompt>
             </StyledForm>
     );
 };
