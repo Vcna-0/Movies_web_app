@@ -1,6 +1,6 @@
-import logo from "../../assets/MovieIcon.svg";
+import logo from "@assets/MovieIcon.svg";
 import { StyledMenuWrapper, StyledNav, StyledSvg, StyledButton, StyledNavLink } from "./MenuStyles";
-import iconProfile from "../../assets/OvalProfil.svg";
+import iconProfile from "@assets/OvalProfil.svg";
 
 interface MenuProps {
   location: Location;
