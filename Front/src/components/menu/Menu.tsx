@@ -2,11 +2,7 @@ import logo from "@assets/MovieIcon.svg";
 import { StyledMenuWrapper, StyledNav, StyledSvg, StyledButton, StyledNavLink } from "./MenuStyles";
 import iconProfile from "@assets/OvalProfil.svg";
 
-interface MenuProps {
-  location: Location;
-}
-
-export default function Menu({ location }: MenuProps) {
+export default function Menu() {
 
   return (
     <StyledMenuWrapper>
