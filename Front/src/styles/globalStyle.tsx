@@ -11,13 +11,13 @@ export const GlobalStyles = createGlobalStyle`
         --fw-outfitMedium: 500;
 
         //font-weight / font-size / font-family
-        --font-HeadingLarge: var(--fw-outfitLight) 32px var(--ff-font) ; 
-        --font-HeadingMedium: var(--fw-outfitLight) 24px var(--ff-font) ; 
-        --font-HeadingSmall: var(--fw-outfitMedium) 24px var(--ff-font) ;
-        --font-HeadingXSmall: var(--fw-outfitMedium) 18px var(--ff-font) ;
+        --font-HeadingLarge: 300 32px 'Outfit', sans-serif ; 
+        --font-HeadingMedium: 300 24px 'Outfit', sans-serif ; 
+        --font-HeadingSmall: 500 24px 'Outfit', sans-serif ;
+        --font-HeadingXSmall: 500 18px 'Outfit', sans-serif ;
 
-        --font-BodyMedium: var(--fw-outfitLight) 15px var(--ff-font) ;
-        --font-BodySmall: var(--fw-outfitLight) 13px var(--ff-font) ;
+        --font-BodyMedium: 300 15px 'Outfit', sans-serif ;
+        --font-BodySmall: 300 13px 'Outfit', sans-serif ;
 
         // Colors
         --clr-red: hsl(0, 97%, 63%);
