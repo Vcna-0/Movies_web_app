@@ -31,9 +31,7 @@ export const StyledInput = styled.input`
     border: none;
     border-bottom: 1px solid #5A698F;
     color : hsla(0, 0%, 100%, 0.5);
-    font-family: Outfit;
-    font-size: 15px;
-    font-weight: 300;
+    font : var(--font-BodyMedium);
     padding: 0 1rem 1.125rem;
     width: 100%;
 `;
@@ -44,9 +42,7 @@ export const StyledButton = styled.input`
     border-radius: .375rem;
     color: #FFF;
     cursor: pointer;
-    font-family: Outfit;
-    font-size: 15px;
-    font-weight: 300;
+    font : var(--font-BodyMedium);
     text-align: center;
     height: 3rem;
     width: 100%;
@@ -54,9 +50,7 @@ export const StyledButton = styled.input`
 
 export const StyledLoginPrompt = styled.label`
     color: #fff;
-    font-family: Outfit;
-    font-size: 15px;
-    font-weight: 300;
+    font : var(--font-BodyMedium);
     text-align: center;
 `;
 
