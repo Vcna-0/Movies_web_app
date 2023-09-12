@@ -54,6 +54,7 @@ export const StyledSvg = styled.svg`
     path {
       fill: #FFF;
     }
+  }  
 `;
 
 export const StyledButton = styled.button`

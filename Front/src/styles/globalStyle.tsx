@@ -7,24 +7,25 @@ export const GlobalStyles = createGlobalStyle`
         // Fonts family
         --ff-Outfit: 'Outfit', sans-serif;
         // Fonts weight
-        --fw-outfitLight: 300;
-        --fw-outfitMedium: 500;
+        --fw-OutfitLight: 300;
+        --fw-OutfitMedium: 500;
 
         //font-weight / font-size / font-family
         --font-HeadingLarge: 300 32px 'Outfit', sans-serif ; 
         --font-HeadingMedium: 300 24px 'Outfit', sans-serif ; 
         --font-HeadingSmall: 500 24px 'Outfit', sans-serif ;
         --font-HeadingXSmall: 500 18px 'Outfit', sans-serif ;
+        --font-HeadingXxSmall: 500 14px 'Outfit', sans-serif ;
 
-        --font-BodyMedium: 300 15px 'Outfit', sans-serif ;
+        --font-BodyMedium: 300 16px 'Outfit', sans-serif ;
         --font-BodySmall: 300 13px 'Outfit', sans-serif ;
 
         // Colors
-        --clr-red: hsl(0, 97%, 63%);
-        --clr-darkBlue: hsl(233, 30%, 9%);
-        --clr-greyishBlue: hsl(223, 23%, 46%);
-        --clr-semiDarkBlue: hsl(223, 36%, 13%);
-        --clr-white: hsl(0, 0%, 100%);
+        --clr-Red: hsl(0, 97%, 63%);
+        --clr-DarkBlue: hsl(233, 30%, 9%);
+        --clr-GreyishBlue: hsl(223, 23%, 46%);
+        --clr-SemiDarkBlue: hsl(223, 36%, 13%);
+        --clr-White: hsl(0, 0%, 100%);
     }
 
     *,

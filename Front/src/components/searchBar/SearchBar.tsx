@@ -7,10 +7,11 @@ import {StyledForm, StyledInput, SearchIcon} from './SearchBarStyles';
 type Props = {
 	setSearchResults: React.Dispatch<React.SetStateAction<(MovieResult | TvResult)[]>>;
 	setSearchName: React.Dispatch<React.SetStateAction<string>>;
+	placeholderTxt: string;
 }
 
 
-export default function SearchBar ({setSearchResults, setSearchName}: Props) {
+export default function SearchBar ({placeholderTxt, setSearchResults, setSearchName}: Props) {
 
     const { register, handleSubmit } = useForm<IFormInputSearch>();
 	const API_KEY = import.meta.env.VITE_APP_API_KEY;
@@ -23,14 +24,18 @@ export default function SearchBar ({setSearchResults, setSearchName}: Props) {
 
 	const handleSearch = async (searchName : string) => {
 		try {
-			const movieResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${searchName}&api_key=${API_KEY}`);
-			const movieResults = movieResponse.data.results;
+			// const movieResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${searchName}&api_key=${API_KEY}`);
+			// const movieResults = movieResponse.data.results;
 
-			const tvResponse = await axios.get(`https://api.themoviedb.org/3/search/tv?query=${searchName}&api_key=${API_KEY}`);
-			const tvResults = tvResponse.data.results;
+			// const tvResponse = await axios.get(`https://api.themoviedb.org/3/search/tv?query=${searchName}&api_key=${API_KEY}`);
+			// const tvResults = tvResponse.data.results;
 			
-			const allResults: Array<MovieResult | TvResult> = [...movieResults, ...tvResults];
-			setSearchResults(allResults);
+			// const allResults: Array<MovieResult | TvResult> = [...movieResults, ...tvResults];
+			// setSearchResults(allResults);
+			
+			const searchResponse = await axios.get(`https://api.themoviedb.org/3/search/multi?include_adult=false&query=${searchName}&api_key=${API_KEY}`);
+			const response = searchResponse.data.results;
+			setSearchResults(response);
 
 		} catch (error) {
 			console.error('Erreur lors de l\'appel API :', error);
@@ -43,7 +48,7 @@ export default function SearchBar ({setSearchResults, setSearchName}: Props) {
 			<SearchIcon />
 			<StyledInput
 				type="text"
-				placeholder="Search for movies or TV series"
+				placeholder={placeholderTxt}
 				{...register('searchName')}
 				onKeyDown={(e) => {
 					if (e.key === 'Enter') {
