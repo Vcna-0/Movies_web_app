@@ -1,13 +1,17 @@
 import { MovieResult, TvResult } from '../../type';
-import { StyledFigure, StyledCardLink, StyledImg, StyledBookmark, StyledFigcaption, StyledTitle, StyledParagraph } from './MovieCardStyles'
-import missingImg from '@assets/MissingImg.svg'
+import { StyledFigure, StyledCardLink, StyledImg, StyledBookmark, StyledFigcaption, StyledTitle, StyledParagraph } from './CardStyles'
 import { HiOutlineBookmark } from 'react-icons/hi2';
+import missingImg from '@assets/MissingImg.svg'
 
 type Props = {
   result: MovieResult | TvResult;
 }
 
-export default function MovieCard({result}: Props) {
+const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT ;
+
+export default function Card({result}: Props) {
+
+
     console.log("result", result);
 
     const dateStr = result.release_date ? result.release_date : (result.first_air_date ? result.first_air_date : "");
@@ -17,8 +21,14 @@ export default function MovieCard({result}: Props) {
         <StyledFigure key={result.id}>
             <StyledCardLink href='#'>
                 <StyledImg 
-                    src={result.backdrop_path ? `https://image.tmdb.org/t/p/w500${result.backdrop_path}` : missingImg}
-                    isMissing={!result.backdrop_path}
+                    src={
+                        result.backdrop_path ? 
+                        `${IMAGE_ENDPOINT}/original${result.backdrop_path}`
+                        : result.poster_path ? 
+                        `${IMAGE_ENDPOINT}/original${result.poster_path}`
+                        : missingImg 
+                    }
+                    isMissing={!result.poster_path}
                 />
                 <StyledBookmark>
                     <HiOutlineBookmark/>
