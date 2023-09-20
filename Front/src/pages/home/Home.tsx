@@ -4,6 +4,7 @@ import SearchBar from "@components/searchBar/SearchBar";
 import Card from "@/components/card/Card";
 import { MovieResult, TvResult } from '../../type';
 import { StyledHomePage, StyledMain, StyledResult, StyledParagraph, StyledGridResults } from './HomeStyles';
+import TrendingSlider from "@/components/trendingSlider/TrendingSlider";
 
 
 export default function Home() {
@@ -31,7 +32,8 @@ export default function Home() {
 					</StyledGridResults>
 				</StyledResult>
 			) : (
-				<p>no result</p>
+				// <p>no result</p>
+				<TrendingSlider searchResults={searchResults} />
 			)}
 		</StyledMain>
 	</StyledHomePage>
