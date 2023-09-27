@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -44,6 +44,6 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const StyledTitle = styled.h1`
-    color: #FFF;
-    font : var(--font-HeadingLarge);
+   color: #fff;
+   font: var(--font-HeadingLarge);
 `;

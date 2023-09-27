@@ -1,36 +1,39 @@
-import { register } from 'swiper/element/bundle';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import Card from "@/components/card/Card";
+import { useState } from 'react';
+import Card from '@/components/card/Card';
 import { MovieResult, TvResult } from '@/type';
-import { FreeMode } from 'swiper/modules';
-import { type } from 'os';
-
-register();
-
+import { StyledSlider, SliderContainer, CardWrapper, SliderButtonLeft, SliderButtonRight } from './TrendingSliderStyle';
+import { MdArrowForwardIos, MdOutlineArrowBackIos } from 'react-icons/md';
 type Props = {
-    searchResults: Array<MovieResult | TvResult>;
-}
+   data: Array<MovieResult | TvResult>;
+};
 
-export default function TrendingSlider({searchResults}: Props) {
+export default function TrendingSlider({ data }: Props) {
+   const [currentSlide, setCurrentSlide] = useState(0);
 
+   const handleSlideChange = (increment: number) => {
+      const slideIncrement = window.innerWidth <= 768 ? increment : increment * 2;
+      setCurrentSlide((currentSlide + slideIncrement + data.length) % data.length);
+   };
 
-  return (
-    <div>
-      <h2>Trending</h2>
-
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        freeMode={true}
-        modules={[FreeMode]}
-      >
-        {searchResults.map((result) => (
-            <SwiperSlide>
-                <Card key={result.id} result={result} />
-            </SwiperSlide>
-		))}
-      </Swiper>
-    </div>
-  )
+   return (
+      <StyledSlider>
+         <SliderButtonLeft onClick={() => handleSlideChange(-1)}>
+            <MdOutlineArrowBackIos />
+         </SliderButtonLeft>
+         <SliderContainer>
+            {/* Cette partie du code affiche une liste de cards en boucle. */}
+            {data
+               .slice(currentSlide)
+               .concat(data.slice(0, currentSlide))
+               .map((result) => (
+                  <CardWrapper key={result.id}>
+                     <Card result={result} />
+                  </CardWrapper>
+               ))}
+         </SliderContainer>
+         <SliderButtonRight onClick={() => handleSlideChange(1)}>
+            <MdArrowForwardIos />
+         </SliderButtonRight>
+      </StyledSlider>
+   );
 }
