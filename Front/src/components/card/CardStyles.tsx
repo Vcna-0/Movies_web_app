@@ -4,6 +4,10 @@ interface StyledImgProps {
    isMissing?: boolean;
 }
 
+interface StyledFigcaptionProps {
+   typeCard: string;
+}
+
 export const StyledFigure = styled.figure`
    position: relative;
    overflow: hidden;
@@ -47,6 +51,15 @@ export const StyledImg = styled.img<StyledImgProps>`
    }
 `;
 
+export const StyledFilterImg = styled.div`
+   background: linear-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.5));
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   bottom: 4px;
+   border-radius: 8px;
+`;
+
 export const StyledBookmark = styled.button`
    position: absolute;
    width: 32px;
@@ -75,10 +88,19 @@ export const StyledBookmark = styled.button`
    }
 `;
 
-export const StyledFigcaption = styled.figcaption`
+export const StyledFigcaption = styled.figcaption<StyledFigcaptionProps>`
    display: flex;
    flex-direction: column-reverse;
    gap: 1px;
+
+   ${(props) =>
+      props.typeCard === 'trendingCard' &&
+      css`
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         padding: 16px 16px;
+      `}
 
    @media screen and (min-width: 768px) {
       gap: 2px;
@@ -94,9 +116,15 @@ export const StyledTitle = styled.h2`
    }
 `;
 
-export const StyledParagraph = styled.p`
+export const StyledParagraph = styled.p<StyledFigcaptionProps>`
    color: var(--clr-GreyishBlue);
    font: var(--font-BodySmall);
+
+   ${(props) =>
+      props.typeCard === 'trendingCard' &&
+      css`
+         color: var(--clr-White);
+      `}
 
    @media screen and (min-width: 768px) {
       font: var(--font-BodyMedium);

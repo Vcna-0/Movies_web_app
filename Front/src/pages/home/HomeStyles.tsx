@@ -17,7 +17,8 @@ export const StyledMain = styled.main`
    padding: 2.125rem 1rem;
 
    @media screen and (min-width: 1024px) {
-      padding: 0 2.25rem;
+      max-width: 1650px;
+      margin: 0 auto;
    }
 `;
 

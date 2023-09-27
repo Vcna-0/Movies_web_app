@@ -1,18 +1,26 @@
 import { useState } from 'react';
 import Card from '@/components/card/Card';
 import { MovieResult, TvResult } from '@/type';
-import { StyledSlider, SliderContainer, CardWrapper, SliderButtonLeft, SliderButtonRight } from './TrendingSliderStyle';
+import {
+   StyledSlider,
+   SliderContainer,
+   CardWrapper,
+   // SliderButton,
+   SliderButtonLeft,
+   SliderButtonRight,
+} from './TrendingSliderStyle';
 import { MdArrowForwardIos, MdOutlineArrowBackIos } from 'react-icons/md';
+
 type Props = {
-   data: Array<MovieResult | TvResult>;
+   dataTrending: Array<MovieResult | TvResult>;
 };
 
-export default function TrendingSlider({ data }: Props) {
+export default function TrendingSlider({ dataTrending }: Props) {
    const [currentSlide, setCurrentSlide] = useState(0);
 
    const handleSlideChange = (increment: number) => {
       const slideIncrement = window.innerWidth <= 768 ? increment : increment * 2;
-      setCurrentSlide((currentSlide + slideIncrement + data.length) % data.length);
+      setCurrentSlide((currentSlide + slideIncrement + dataTrending.length) % dataTrending.length);
    };
 
    return (
@@ -22,12 +30,12 @@ export default function TrendingSlider({ data }: Props) {
          </SliderButtonLeft>
          <SliderContainer>
             {/* Cette partie du code affiche une liste de cards en boucle. */}
-            {data
+            {dataTrending
                .slice(currentSlide)
-               .concat(data.slice(0, currentSlide))
+               .concat(dataTrending.slice(0, currentSlide))
                .map((result) => (
                   <CardWrapper key={result.id}>
-                     <Card result={result} />
+                     <Card data={result} type="trendingCard" />
                   </CardWrapper>
                ))}
          </SliderContainer>

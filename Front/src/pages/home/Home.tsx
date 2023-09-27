@@ -38,14 +38,16 @@ export default function Home() {
                         .sort((a, b) => b.popularity - a.popularity)
                         .map(
                            (result) =>
-                              allowedMediaTypes.includes(result.media_type) && <Card key={result.id} result={result} />
+                              allowedMediaTypes.includes(result.media_type) && (
+                                 <Card key={result.id} data={result} type="classicCard" />
+                              )
                         )}
                   </StyledGridResults>
                </StyledResult>
             ) : (
                // <p>no result</p>
                // <TrendingSlider />
-               <TrendingSlider data={trendingList} />
+               <TrendingSlider dataTrending={trendingList} />
             )}
          </StyledMain>
       </StyledHomePage>

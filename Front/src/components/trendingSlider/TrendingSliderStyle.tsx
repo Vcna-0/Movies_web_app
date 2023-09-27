@@ -4,25 +4,19 @@ export const StyledSlider = styled.div`
    display: flex;
    flex-direction: row;
    justify-content: center;
-   gap: 20px;
-   max-width: 1600px;
-   margin: 0 auto;
 `;
 export const SliderContainer = styled.div`
-   /* position: relative; */
    display: flex;
    overflow-x: auto;
-   max-width: 100%;
-   margin-bottom: 20px;
-   position: relative;
-   min-height: 100px;
+   padding: 15px;
    -ms-overflow-style: none; /* IE et Edge */
    scrollbar-width: none; /* Firefox */
+
    &::-webkit-scrollbar {
-      width: 0.1em;
+      display: none;
    }
 
-   scroll-behavior: smooth;
+   transition: transform 300ms ease;
 `;
 
 export const CardWrapper = styled.div`
@@ -39,38 +33,8 @@ export const SliderButton = styled.button`
 `;
 
 export const SliderButtonLeft = styled(SliderButton)`
-   /* position: absolute;
-   z-index: 1;
-   top: 155px;
-   left: 150px; */
+   transform: translateX(-25%);
 `;
 export const SliderButtonRight = styled(SliderButton)`
-   /* position: absolute;
-   top: 155px;
-   right: 0; */
+   transform: translateX(25%);
 `;
-
-//  ========= TEST
-// export const SliderContainer = styled.div`
-//    display: flex;
-//    overflow-x: auto; /* Active le défilement horizontal */
-//    max-width: 100%;
-//    margin-bottom: 20px;
-//    position: relative;
-//    min-height: 100px;
-//    -ms-overflow-style: none; /* IE et Edge */
-//    scrollbar-width: none; /* Firefox */
-//    /* Masque la barre de défilement horizontale */
-//    /* scrollbar-width: thin; WebKit */
-//    /* scrollbar-color: transparent transparent; WebKit */
-//    &::-webkit-scrollbar {
-//       width: 0.1em;
-//    }
-//    /* &::-webkit-scrollbar-thumb {
-//       background-color: transparent;
-//    } */
-
-//    &:hover .CardWrapper {
-//       transform: translateX(-25%);
-//    }
-// `;

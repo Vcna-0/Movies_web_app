@@ -7,39 +7,40 @@ import {
    StyledFigcaption,
    StyledTitle,
    StyledParagraph,
+   StyledFilterImg,
 } from './CardStyles';
 import { HiOutlineBookmark } from 'react-icons/hi2';
 import missingImg from '@assets/MissingImg.svg';
 
 type Props = {
-   result: MovieResult | TvResult;
+   data: MovieResult | TvResult;
+   type: string;
 };
 
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
-export default function Card({ result }: Props) {
-   console.log('result', result);
-
-   const dateStr = result.release_date || result.first_air_date || '';
+export default function Card({ data, type }: Props) {
+   const dateStr = data.release_date || data.first_air_date || '';
    const year = dateStr.substring(0, 4);
-   const imgPath = result.backdrop_path || result.poster_path;
+   const imgPath = data.backdrop_path || data.poster_path;
 
    return (
-      <StyledFigure key={result.id}>
+      <StyledFigure key={data.id}>
          <StyledCardLink href="#">
             <StyledImg
                src={imgPath ? `${IMAGE_ENDPOINT}/original${imgPath}` : missingImg}
-               isMissing={!result.poster_path}
+               isMissing={!data.poster_path}
             />
+            {type === 'TrendingCard' && <StyledFilterImg />}
             <StyledBookmark>
                <HiOutlineBookmark />
                {/* <HiMiniBookmark/>  icon bookmark remplie */}
             </StyledBookmark>
-            <StyledFigcaption>
-               <StyledTitle>{result.title || result.name}</StyledTitle>
-               <StyledParagraph>
+            <StyledFigcaption typeCard={type}>
+               <StyledTitle>{data.title || data.name}</StyledTitle>
+               <StyledParagraph typeCard={type}>
                   {year ? `${year} - ` : ''}
-                  {result.media_type} - {result.original_language}
+                  {data.media_type} - {data.original_language}
                </StyledParagraph>
             </StyledFigcaption>
          </StyledCardLink>
