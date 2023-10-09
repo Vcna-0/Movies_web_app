@@ -29,13 +29,15 @@ export const StyledImg = styled.img<StyledImgProps>`
    height: 110px;
    width: 100%;
    border-radius: 8px;
-   opacity: 0.4;
+   object-fit: cover;
+   opacity: 1;
+   overflow-clip-margin: unset;
 
    ${(props) =>
-      !props.isMissing &&
+      props.isMissing &&
       css`
-         object-fit: cover;
-         opacity: 1;
+         object-fit: contain;
+         opacity: 0.4;
       `}
 
    @media screen and (min-width: 768px) {

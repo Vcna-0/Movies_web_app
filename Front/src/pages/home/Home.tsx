@@ -47,7 +47,7 @@ export default function Home() {
             ) : (
                // <p>no result</p>
                // <TrendingSlider />
-               <TrendingSlider dataTrending={trendingList} />
+               <TrendingSlider dataTrending={trendingList} type="trendingCard" />
             )}
          </StyledMain>
       </StyledHomePage>

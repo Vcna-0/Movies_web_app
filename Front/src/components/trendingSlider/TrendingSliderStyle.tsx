@@ -9,8 +9,8 @@ export const SliderContainer = styled.div`
    display: flex;
    overflow-x: auto;
    padding: 15px;
-   -ms-overflow-style: none; /* IE et Edge */
-   scrollbar-width: none; /* Firefox */
+   -ms-overflow-style: none;
+   scrollbar-width: none;
 
    &::-webkit-scrollbar {
       display: none;
@@ -20,8 +20,8 @@ export const SliderContainer = styled.div`
 `;
 
 export const CardWrapper = styled.div`
-   min-width: 350px; /* Largeur d'une carte */
-   margin-right: 30px; /* Marge entre les cartes */
+   min-width: 350px;
+   margin-right: 30px;
    flex: 0 0 19.7%;
 `;
 

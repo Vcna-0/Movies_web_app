@@ -27,10 +27,9 @@ export default function Card({ data, type }: Props) {
    return (
       <StyledFigure key={data.id}>
          <StyledCardLink href="#">
-            <StyledImg
-               src={imgPath ? `${IMAGE_ENDPOINT}/original${imgPath}` : missingImg}
-               isMissing={!data.poster_path}
-            />
+            <div>
+               <StyledImg src={imgPath ? `${IMAGE_ENDPOINT}/original${imgPath}` : missingImg} isMissing={!imgPath} />
+            </div>
             {type === 'TrendingCard' && <StyledFilterImg />}
             <StyledBookmark>
                <HiOutlineBookmark />
