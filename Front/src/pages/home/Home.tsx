@@ -3,9 +3,9 @@ import { MovieResult, TvResult } from '../../type';
 import { getTrending } from '@/lib/theMovieDB';
 import Menu from '@components/menu/Menu';
 import SearchBar from '@components/searchBar/SearchBar';
-import Card from '@/components/card/Card';
+import MediaGrid from '@/components/mediaGrid/MediaGrid';
 import TrendingSlider from '@/components/trendingSlider/TrendingSlider';
-import { StyledHomePage, StyledMain, StyledResult, StyledParagraph, StyledGridResults } from './HomeStyles';
+import { StyledHomePage, StyledMain, StyledResult, StyledParagraph } from './HomeStyles';
 
 export default function Home() {
    const [userQuery, setUserQuery] = useState<string>('');
@@ -33,21 +33,16 @@ export default function Home() {
                   <StyledParagraph>
                      Found {searchResults.length} results for {userQuery}
                   </StyledParagraph>
-                  <StyledGridResults>
-                     {searchResults
-                        .sort((a, b) => b.popularity - a.popularity)
-                        .map(
-                           (result) =>
-                              allowedMediaTypes.includes(result.media_type) && (
-                                 <Card key={result.id} data={result} type="classicCard" />
-                              )
-                        )}
-                  </StyledGridResults>
+                  <MediaGrid dataMedia={searchResults} allowedMediaTypes={allowedMediaTypes} typeCard="classicCard" />
                </StyledResult>
             ) : (
-               // <p>no result</p>
-               // <TrendingSlider />
-               <TrendingSlider dataTrending={trendingList} type="trendingCard" />
+               <>
+                  <TrendingSlider dataTrending={trendingList} type="trendingCard" />
+                  <StyledResult>
+                     <StyledParagraph>Recommended for you</StyledParagraph>
+                     <MediaGrid dataMedia={trendingList} allowedMediaTypes={allowedMediaTypes} typeCard="classicCard" />
+                  </StyledResult>
+               </>
             )}
          </StyledMain>
       </StyledHomePage>
