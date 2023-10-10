@@ -1,22 +1,29 @@
 import { useEffect, useState } from 'react';
 import { MovieResult, TvResult } from '../../type';
-import { getTrending } from '@/lib/theMovieDB';
+import { getTrending, getMovieByPopularity, getTvByPopularity } from '@/lib/theMovieDB';
 import Menu from '@components/menu/Menu';
 import SearchBar from '@components/searchBar/SearchBar';
 import MediaGrid from '@/components/mediaGrid/MediaGrid';
 import TrendingSlider from '@/components/trendingSlider/TrendingSlider';
-import { StyledHomePage, StyledMain, StyledResult, StyledParagraph } from './HomeStyles';
+import { StyledHomePage, StyledMain } from './HomeStyles';
 
 export default function Home() {
    const [userQuery, setUserQuery] = useState<string>('');
    const [searchResults, setSearchResults] = useState<Array<MovieResult | TvResult>>([]);
    const [trendingList, setTrendingList] = useState<Array<MovieResult | TvResult>>([]);
-   const allowedMediaTypes = ['movie', 'tv', 'tv_episode'];
+   const [popularMovieList, setPopularMovieList] = useState<Array<MovieResult | TvResult>>([]);
+   const [popularTvList, setPopularTvList] = useState<Array<MovieResult | TvResult>>([]);
 
    useEffect(() => {
-      getTrending()
-         .then((data) => setTrendingList(data))
-         .catch((error) => console.error("Erreur lors de l'appel API :", error));
+      getTrending().then(setTrendingList).catch(console.error);
+   }, []);
+
+   useEffect(() => {
+      getMovieByPopularity().then(setPopularMovieList).catch(console.error);
+   }, []);
+
+   useEffect(() => {
+      getTvByPopularity().then(setPopularTvList).catch(console.error);
    }, []);
 
    return (
@@ -29,19 +36,16 @@ export default function Home() {
                setUserQuery={setUserQuery}
             />
             {searchResults.length > 0 ? (
-               <StyledResult>
-                  <StyledParagraph>
-                     Found {searchResults.length} results for {userQuery}
-                  </StyledParagraph>
-                  <MediaGrid dataMedia={searchResults} allowedMediaTypes={allowedMediaTypes} typeCard="classicCard" />
-               </StyledResult>
+               <MediaGrid
+                  dataMedia={searchResults}
+                  typeCard="classicCard"
+                  titleSection={`Found ${searchResults.length} results for ${userQuery}`}
+               />
             ) : (
                <>
                   <TrendingSlider dataTrending={trendingList} type="trendingCard" />
-                  <StyledResult>
-                     <StyledParagraph>Recommended for you</StyledParagraph>
-                     <MediaGrid dataMedia={trendingList} allowedMediaTypes={allowedMediaTypes} typeCard="classicCard" />
-                  </StyledResult>
+                  <MediaGrid dataMedia={popularMovieList} typeCard="classicCard" titleSection="Popular Movies" />
+                  <MediaGrid dataMedia={popularTvList} typeCard="classicCard" titleSection="Popular Tv" />
                </>
             )}
          </StyledMain>

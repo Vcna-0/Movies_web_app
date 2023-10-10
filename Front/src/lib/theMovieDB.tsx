@@ -18,3 +18,21 @@ export async function getTrending() {
       return console.error(err);
    }
 }
+
+export async function getMovieByPopularity() {
+   try {
+      const res = await fetch(`${TMDB_ENDPOINT}/movie/popular?api_key=${API_KEY}`);
+      return (await res.json()).results;
+   } catch (err) {
+      return console.error(err);
+   }
+}
+
+export async function getTvByPopularity() {
+   try {
+      const res = await fetch(`${TMDB_ENDPOINT}/tv/popular?api_key=${API_KEY}`);
+      return (await res.json()).results;
+   } catch (err) {
+      return console.error(err);
+   }
+}

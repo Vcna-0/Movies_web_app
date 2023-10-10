@@ -1,24 +1,24 @@
 import { MovieResult, TvResult } from '@/type';
-import { StyledGridResults } from './MediaGridStyles';
+import { StyledContainer, StyledGridResults, StyledParagraph } from './MediaGridStyles';
 import Card from '../card/Card';
 
 type Props = {
    dataMedia: Array<MovieResult | TvResult>;
-   allowedMediaTypes: Array<string>;
    typeCard: string;
+   titleSection: string;
 };
 
-export default function MediaGrid({ dataMedia, allowedMediaTypes, typeCard }: Props) {
+export default function MediaGrid({ dataMedia, typeCard, titleSection }: Props) {
    return (
-      <StyledGridResults>
-         {dataMedia
-            .sort((a, b) => b.popularity - a.popularity)
-            .map(
-               (result) =>
-                  allowedMediaTypes.includes(result.media_type) && (
-                     <Card key={result.id} data={result} type={typeCard} />
-                  )
-            )}
-      </StyledGridResults>
+      <StyledContainer>
+         <StyledParagraph>{titleSection}</StyledParagraph>
+         <StyledGridResults>
+            {dataMedia
+               .sort((a, b) => b.popularity - a.popularity)
+               .map((result) => (
+                  <Card key={result.id} data={result} type={typeCard} />
+               ))}
+         </StyledGridResults>
+      </StyledContainer>
    );
 }
