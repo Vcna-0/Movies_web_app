@@ -2,22 +2,41 @@ import styled, { css } from 'styled-components';
 
 interface StyledImgProps {
    isMissing?: boolean;
+   typeCard: string;
 }
 
 interface StyledFigcaptionProps {
    typeCard: string;
 }
 
-export const StyledFigure = styled.figure`
+export const StyledFigure = styled.figure<StyledImgProps>`
    position: relative;
-   overflow: hidden;
    width: 100%;
+   height: 195px;
+   overflow: hidden;
+   border-radius: 8px;
    text-decoration: none;
-   transition: transform 0.3s ease;
 
-   &:hover {
-      transform: scale(1.1);
+   @media screen and (max-width: 768px) {
+      border-radius: 0;
    }
+
+   ${(props) =>
+      props.typeCard === 'classicCard' &&
+      css`
+         transition: transform 0.3s ease;
+         &:hover {
+            transform: scale(1.1);
+         }
+      `}
+
+   ${(props) =>
+      props.typeCard === 'trendingCard' &&
+      css`
+         &:hover img {
+            transform: scale(1.1);
+         }
+      `}
 `;
 
 export const StyledCardLink = styled.a`
@@ -26,23 +45,12 @@ export const StyledCardLink = styled.a`
 `;
 
 export const StyledImg = styled.img<StyledImgProps>`
-   height: 110px;
    width: 100%;
-   border-radius: 8px;
    object-fit: cover;
    opacity: 1;
+   border-radius: 8px;
    overflow-clip-margin: unset;
-
-   ${(props) =>
-      props.isMissing &&
-      css`
-         object-fit: contain;
-         opacity: 0.4;
-      `}
-
-   @media screen and (min-width: 768px) {
-      height: 140px;
-   }
+   transition: transform 0.3s ease;
 
    @media screen and (min-width: 1024px) {
       height: 174px;
@@ -51,31 +59,51 @@ export const StyledImg = styled.img<StyledImgProps>`
    @media screen and (min-width: 1600px) {
       height: 204px;
    }
+
+   ${(props) =>
+      props.typeCard === 'trendingCard' &&
+      css`
+         height: 190px;
+
+         @media screen and (max-width: 768px) {
+            border-radius: 0;
+         }
+
+         @media screen and (min-width: 1024px) {
+            height: 100%;
+         }
+      `}
+
+   ${(props) =>
+      props.isMissing &&
+      css`
+         object-fit: contain;
+         opacity: 0.4;
+      `}
 `;
 
 export const StyledFilterImg = styled.div`
-   background: linear-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.5));
+   position: absolute;
    width: 100%;
    height: 100%;
-   position: absolute;
-   bottom: 4px;
-   border-radius: 8px;
+   bottom: 0px;
+   background: linear-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.5));
 `;
 
 export const StyledBookmark = styled.button`
    position: absolute;
+   top: 8px;
+   right: 8px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.5rem;
    width: 32px;
    height: 32px;
    border-radius: 50%;
    background-color: hsl(233, 30%, 9%, 0.8);
-   display: flex;
-   align-items: center;
-   justify-content: center;
    color: white;
-   top: 8px;
-   right: 8px;
    font-size: 20px;
-   padding: 0.5rem;
    cursor: pointer;
    border: none;
 
@@ -93,7 +121,7 @@ export const StyledBookmark = styled.button`
 export const StyledFigcaption = styled.figcaption<StyledFigcaptionProps>`
    display: flex;
    flex-direction: column-reverse;
-   gap: 1px;
+   gap: 2px;
 
    ${(props) =>
       props.typeCard === 'trendingCard' &&
@@ -103,13 +131,9 @@ export const StyledFigcaption = styled.figcaption<StyledFigcaptionProps>`
          left: 0;
          padding: 16px 16px;
       `}
-
-   @media screen and (min-width: 768px) {
-      gap: 2px;
-   }
 `;
 
-export const StyledTitle = styled.h2`
+export const StyledTitle = styled.h3`
    color: var(--clr-White);
    font: var(--font-HeadingXxSmall);
 

@@ -25,12 +25,16 @@ export default function Card({ data, type }: Props) {
    const imgPath = data.backdrop_path || data.poster_path;
 
    return (
-      <StyledFigure key={data.id}>
+      <StyledFigure key={data.id} typeCard={type}>
          <StyledCardLink href="#">
             <div>
-               <StyledImg src={imgPath ? `${IMAGE_ENDPOINT}/original${imgPath}` : missingImg} isMissing={!imgPath} />
+               <StyledImg
+                  src={imgPath ? `${IMAGE_ENDPOINT}/original${imgPath}` : missingImg}
+                  isMissing={!imgPath}
+                  typeCard={type}
+               />
+               {type === 'trendingCard' && <StyledFilterImg />}
             </div>
-            {type === 'TrendingCard' && <StyledFilterImg />}
             <StyledBookmark>
                <HiOutlineBookmark />
                {/* <HiMiniBookmark/>  icon bookmark remplie */}
