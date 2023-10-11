@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
    flex-direction: column;
    gap: 1rem;
 
-   @media screen and (min-width: 1024px) {
+   @media screen and (min-width: 768px) {
       width: 90%;
       margin: 0 auto;
    }
@@ -16,7 +16,7 @@ export const StyledTitle = styled.h2`
    font: var(--font-HeadingMedium);
    margin-left: 20px;
 
-   @media screen and (min-width: 1024px) {
+   @media screen and (min-width: 768px) {
       margin-left: 0px;
    }
 `;
@@ -59,7 +59,7 @@ export const SliderButton = styled.button`
       color: white;
       font-size: 30px;
       text-align: center;
-      transform: translateY(75%);
+      transform: translateY(100%);
    }
 
    &:hover {

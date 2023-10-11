@@ -14,11 +14,15 @@ export const StyledFigure = styled.figure<StyledImgProps>`
    width: 100%;
    height: 195px;
    overflow: hidden;
-   border-radius: 8px;
    text-decoration: none;
 
-   @media screen and (max-width: 768px) {
+   @media screen and (min-width: 768px) {
       border-radius: 0;
+      border-radius: 8px;
+   }
+
+   @media screen and (min-width: 1024px) {
+      height: 210px;
    }
 
    ${(props) =>
@@ -63,7 +67,7 @@ export const StyledImg = styled.img<StyledImgProps>`
    ${(props) =>
       props.typeCard === 'trendingCard' &&
       css`
-         height: 190px;
+         height: 100%;
 
          @media screen and (max-width: 768px) {
             border-radius: 0;
