@@ -4,11 +4,6 @@ export const StyledContainer = styled.div`
    display: flex;
    flex-direction: column;
    gap: 1rem;
-
-   @media screen and (min-width: 768px) {
-      width: 90%;
-      margin: 0 auto;
-   }
 `;
 
 export const StyledTitle = styled.h2`

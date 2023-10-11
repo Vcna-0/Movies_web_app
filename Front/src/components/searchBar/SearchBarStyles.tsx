@@ -6,8 +6,13 @@ export const StyledForm = styled.form`
    flex-direction: row;
    align-items: center;
    justify-content: center;
-   max-width: 719px;
-   margin: 0 auto;
+   width: 90%;
+   max-width: 768px;
+   margin-left: 20px;
+
+   @media screen and (min-width: 768px) {
+      margin-left: 0;
+   }
 
    @media screen and (min-width: 1024px) {
       margin: 0;
@@ -15,7 +20,6 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledInput = styled.input`
-   padding-left: 30px;
    width: 100%;
    height: 30px;
    border: none;
@@ -23,9 +27,14 @@ export const StyledInput = styled.input`
    color: hsl(0, 0%, 50%);
    outline: none;
    font: var(--font-BodyMedium);
+
+   &:focus {
+      border-bottom: 1px solid var(--clr-GreyishBlue);
+   }
 `;
 
 export const SearchIcon = styled(FiSearch)`
    font-size: 1.5rem;
    color: var(--clr-White);
+   margin-right: 20px;
 `;

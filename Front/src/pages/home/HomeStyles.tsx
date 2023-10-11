@@ -14,12 +14,14 @@ export const StyledHomePage = styled.div`
 export const StyledMain = styled.main`
    flex: 1;
    overflow-x: auto;
-   /* max-width: 95%; */
-   /* margin: 0 auto; */
-   /* padding: 2.125rem 1rem; */
    display: flex;
    flex-direction: column;
    gap: 2rem;
+
+   @media screen and (min-width: 768px) {
+      width: 90%;
+      margin: 0 auto;
+   }
 
    @media screen and (min-width: 1024px) {
       max-width: 1550px;
