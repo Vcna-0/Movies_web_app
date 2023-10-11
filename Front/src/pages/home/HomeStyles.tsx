@@ -12,7 +12,6 @@ export const StyledHomePage = styled.div`
 `;
 
 export const StyledMain = styled.main`
-   flex: 1;
    overflow-x: auto;
    display: flex;
    flex-direction: column;
@@ -20,10 +19,6 @@ export const StyledMain = styled.main`
 
    @media screen and (min-width: 768px) {
       width: 90%;
-      margin: 0 auto;
-   }
-
-   @media screen and (min-width: 1024px) {
       max-width: 1550px;
       margin: 0 auto;
    }
