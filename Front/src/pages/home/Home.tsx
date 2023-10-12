@@ -6,6 +6,8 @@ import SearchBar from '@components/searchBar/SearchBar';
 import MediaGrid from '@/components/mediaGrid/MediaGrid';
 import TrendingSlider from '@/components/trendingSlider/TrendingSlider';
 import { StyledHomePage, StyledMain } from './HomeStyles';
+import { TbMovie } from 'react-icons/tb';
+import { PiTelevisionFill } from 'react-icons/pi';
 
 export default function Home() {
    const [userQuery, setUserQuery] = useState<string>('');
@@ -44,8 +46,24 @@ export default function Home() {
             ) : (
                <>
                   <TrendingSlider dataTrending={trendingList} type="trendingCard" />
-                  <MediaGrid dataMedia={popularMovieList} typeCard="classicCard" titleSection="Popular Movies" />
-                  <MediaGrid dataMedia={popularTvList} typeCard="classicCard" titleSection="Popular Tv" />
+                  <MediaGrid
+                     dataMedia={popularMovieList}
+                     typeCard="classicCard"
+                     titleSection={
+                        <>
+                           <TbMovie /> Popular Movies
+                        </>
+                     }
+                  />
+                  <MediaGrid
+                     dataMedia={popularTvList}
+                     typeCard="classicCard"
+                     titleSection={
+                        <>
+                           <PiTelevisionFill /> Popular TV
+                        </>
+                     }
+                  />
                </>
             )}
          </StyledMain>

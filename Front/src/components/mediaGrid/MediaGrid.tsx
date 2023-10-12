@@ -5,7 +5,7 @@ import Card from '../card/Card';
 type Props = {
    dataMedia: Array<MovieResult | TvResult>;
    typeCard: string;
-   titleSection: string;
+   titleSection: React.ReactNode;
 };
 
 export default function MediaGrid({ dataMedia, typeCard, titleSection }: Props) {

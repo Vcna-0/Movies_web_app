@@ -4,13 +4,7 @@ export const StyledContainer = styled.div`
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   margin-top: 1.5rem;
-
-   @media screen and (min-width: 1024px) {
-      width: 90%;
-      max-width: 1510px;
-      margin: 0 auto;
-   }
+   margin: 0px 20px;
 `;
 
 export const StyledGridResults = styled.div`
@@ -40,4 +34,7 @@ export const StyledGridResults = styled.div`
 export const StyledParagraph = styled.p`
    color: var(--clr-White);
    font: var(--font-HeadingMedium);
+   display: flex;
+   align-items: center;
+   gap: 15px;
 `;

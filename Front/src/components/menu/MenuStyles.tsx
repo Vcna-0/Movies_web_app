@@ -7,7 +7,6 @@ export const StyledMenuWrapper = styled.div`
    align-items: center;
    justify-content: space-between;
    width: 100%;
-   max-width: 719px;
    height: 56px;
    padding: 1.25rem 1rem;
    margin: 0 auto;
@@ -16,13 +15,13 @@ export const StyledMenuWrapper = styled.div`
    @media screen and (min-width: 768px) {
       margin-top: 23px;
       border-radius: 10px;
+      max-width: 95%;
    }
 
    @media screen and (min-width: 1024px) {
       flex-direction: column;
       width: 96px;
-      height: 850px;
-      margin: 2rem 0 0 2rem;
+      height: 95vh;
    }
 `;
 
