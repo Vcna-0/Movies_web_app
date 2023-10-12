@@ -12,17 +12,12 @@ interface StyledFigcaptionProps {
 export const StyledFigure = styled.figure<StyledImgProps>`
    position: relative;
    width: 100%;
-   height: 195px;
    overflow: hidden;
    text-decoration: none;
 
    @media screen and (min-width: 768px) {
       border-radius: 0;
       border-radius: 8px;
-   }
-
-   @media screen and (min-width: 1024px) {
-      height: 210px;
    }
 
    ${(props) =>
@@ -37,8 +32,14 @@ export const StyledFigure = styled.figure<StyledImgProps>`
    ${(props) =>
       props.typeCard === 'trendingCard' &&
       css`
+         height: 195px;
+
          &:hover img {
             transform: scale(1.1);
+         }
+
+         @media screen and (min-width: 1024px) {
+            height: 210px;
          }
       `}
 `;
