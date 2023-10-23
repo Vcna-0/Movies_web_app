@@ -7,14 +7,16 @@ type Props = {
    setUserQuery: React.Dispatch<React.SetStateAction<string>>;
    setSearchResults: React.Dispatch<React.SetStateAction<(MovieResult | TvResult)[]>>;
    placeholderTxt: string;
+   typeOfResearch: string;
 };
 
-export default function SearchBar({ placeholderTxt, setSearchResults, setUserQuery }: Props) {
+export default function SearchBar({ placeholderTxt, setSearchResults, setUserQuery, typeOfResearch }: Props) {
    const { register, handleSubmit } = useForm<IFormInputSearch>();
 
    const onSubmit: SubmitHandler<IFormInputSearch> = async (data) => {
       setUserQuery(data.searchName);
-      setSearchResults(await getByName(data.searchName));
+      const searchResults = await getByName(data.searchName, typeOfResearch);
+      setSearchResults(searchResults || []);
    };
 
    return (

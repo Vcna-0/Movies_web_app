@@ -33,4 +33,5 @@ export interface IFormInputSearch {
 export enum ETypeCard {
    trendingCard = 'trendingCard',
    classicCard = 'classicCard',
+   popularCard = 'popularCard',
 }

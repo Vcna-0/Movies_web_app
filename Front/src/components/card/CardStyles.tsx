@@ -21,7 +21,7 @@ export const StyledFigure = styled.figure<StyledImgProps>`
    }
 
    ${(props) =>
-      props.typeCard === 'classicCard' &&
+      (props.typeCard === 'classicCard' || props.typeCard === 'popularCard') &&
       css`
          transition: transform 0.3s ease;
          &:hover {
@@ -150,6 +150,9 @@ export const StyledTitle = styled.h3`
 export const StyledParagraph = styled.p<StyledFigcaptionProps>`
    color: var(--clr-GreyishBlue);
    font: var(--font-BodySmall);
+   display: flex;
+   align-items: center;
+   gap: 5px;
 
    ${(props) =>
       props.typeCard === 'trendingCard' &&

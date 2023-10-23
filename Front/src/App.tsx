@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/home/Home.tsx';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Movies from './pages/movies/Movies.tsx';
 import { GlobalStyles } from './styles/globalStyle.tsx';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
          <GlobalStyles />
          <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/movies" element={<Movies />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
          </Routes>
