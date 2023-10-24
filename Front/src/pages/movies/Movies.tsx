@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { MovieResult, TvResult } from '../../type';
+import { MovieResult, TvResult } from '@type';
 import { getMovieByPopularity } from '@/lib/theMovieDB';
 import Menu from '@components/menu/Menu';
 import SearchBar from '@components/searchBar/SearchBar';
 import MediaGrid from '@/components/mediaGrid/MediaGrid';
 import { StyledHomePage, StyledMain } from '../PagesStyles';
-import { TbMovie } from 'react-icons/tb';
+import IconMovie from '@assets/IconMovieWhite.svg';
 
 export default function Movies() {
    const [userQuery, setUserQuery] = useState<string>('');
@@ -39,7 +39,7 @@ export default function Movies() {
                      typeCard="popularCard"
                      titleSection={
                         <>
-                           <TbMovie /> Popular Movies
+                           <img src={IconMovie} alt="" /> Movies
                         </>
                      }
                   />
