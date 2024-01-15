@@ -22,6 +22,10 @@ export const StyledMenuWrapper = styled.div`
       flex-direction: column;
       width: 96px;
       height: 95vh;
+
+      position: fixed;
+      top: 0;
+      left: 50px;
    }
 `;
 

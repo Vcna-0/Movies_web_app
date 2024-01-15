@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function MediaGrid({ dataMedia, typeCard, titleSection }: Props) {
-   console.log('dataMedia', dataMedia);
    return (
       <StyledContainer>
          <StyledParagraph>{titleSection}</StyledParagraph>

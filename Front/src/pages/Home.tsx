@@ -1,23 +1,35 @@
 import { useEffect, useState } from 'react';
-import { MovieResult, TvResult } from '@type';
-import { getTvByPopularity } from '@/lib/theMovieDB';
+import { MovieResult, TvResult } from '../type';
+import { getTrending, getMovieByPopularity, getTvByPopularity } from '@/lib/theMovieDB';
 import Menu from '@components/menu/Menu';
 import SearchBar from '@components/searchBar/SearchBar';
 import MediaGrid from '@/components/mediaGrid/MediaGrid';
+import TrendingSlider from '@/components/trendingSlider/TrendingSlider';
 import ScrollToTopButton from '@/components/scrollToTopButton/ScrollToTopButton';
 import useMobileDetect from '@/hooks/useMobileDetect';
 import { StyledHomePage, StyledMain } from './PagesStyles';
+import IconMovie from '@assets/IconMovieWhite.svg';
 import IconTV from '@assets/IconTVserieWhite.svg';
 
-export default function Series() {
+export default function Home() {
    const [userQuery, setUserQuery] = useState<string>('');
    const [searchResults, setSearchResults] = useState<Array<MovieResult | TvResult>>([]);
+   const [trendingList, setTrendingList] = useState<Array<MovieResult | TvResult>>([]);
    const [popularMovieList, setPopularMovieList] = useState<Array<MovieResult | TvResult>>([]);
+   const [popularTvList, setPopularTvList] = useState<Array<MovieResult | TvResult>>([]);
 
    const isMobile = useMobileDetect();
 
    useEffect(() => {
-      getTvByPopularity().then(setPopularMovieList).catch(console.error);
+      getTrending().then(setTrendingList).catch(console.error);
+   }, []);
+
+   useEffect(() => {
+      getMovieByPopularity().then(setPopularMovieList).catch(console.error);
+   }, []);
+
+   useEffect(() => {
+      getTvByPopularity().then(setPopularTvList).catch(console.error);
    }, []);
 
    return (
@@ -25,10 +37,10 @@ export default function Series() {
          <Menu />
          <StyledMain>
             <SearchBar
-               placeholderTxt="Search for TV series"
+               placeholderTxt="Search for movies or TV series"
                setSearchResults={setSearchResults}
                setUserQuery={setUserQuery}
-               typeOfResearch="tv"
+               typeOfResearch="multi"
             />
             {searchResults.length > 0 ? (
                <MediaGrid
@@ -38,9 +50,19 @@ export default function Series() {
                />
             ) : (
                <>
+                  <TrendingSlider dataTrending={trendingList} type="trendingCard" />
                   <MediaGrid
                      dataMedia={popularMovieList}
-                     typeCard="popularCard"
+                     typeCard="classicCard"
+                     titleSection={
+                        <>
+                           <img src={IconMovie} alt="" /> Movies
+                        </>
+                     }
+                  />
+                  <MediaGrid
+                     dataMedia={popularTvList}
+                     typeCard="classicCard"
                      titleSection={
                         <>
                            <img src={IconTV} alt="" /> TV Series

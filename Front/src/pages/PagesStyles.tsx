@@ -26,4 +26,9 @@ export const StyledMain = styled.main`
       margin: 0 auto;
       gap: 3.5rem;
    }
+
+   @media screen and (min-width: 1024px) {
+      margin-left: 200px;
+      margin-top: 50px;
+   }
 `;

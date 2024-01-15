@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 interface StyledImgProps {
    isMissing?: boolean;
@@ -44,7 +45,7 @@ export const StyledFigure = styled.figure<StyledImgProps>`
       `}
 `;
 
-export const StyledCardLink = styled.a`
+export const StyledCardLink = styled(Link)`
    text-decoration: none;
    color: inherit;
 `;

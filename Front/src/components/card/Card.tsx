@@ -10,7 +10,6 @@ import {
    StyledFilterImg,
 } from './CardStyles';
 import { HiOutlineBookmark } from 'react-icons/hi2';
-import { BiWorld } from 'react-icons/bi';
 import missingImg from '@assets/MissingImg.svg';
 
 type Props = {
@@ -27,7 +26,8 @@ export default function Card({ data, type }: Props) {
 
    return (
       <StyledFigure key={data.id} typeCard={type}>
-         <StyledCardLink href="#">
+         {/* <StyledCardLink to={`/media/${data.id}?type=${data.media_type}`}> */}
+         <StyledCardLink to={`/${data.media_type}/${data.id}`}>
             <StyledImg
                src={imgPath ? `${IMAGE_ENDPOINT}/original${imgPath}` : missingImg}
                isMissing={!imgPath}
@@ -43,8 +43,7 @@ export default function Card({ data, type }: Props) {
                <StyledTitle>{data.title || data.name}</StyledTitle>
                <StyledParagraph typeCard={type}>
                   {year ? `${year} - ` : ''}
-                  {type !== 'popularCard' && `${data.media_type} - `}
-                  <BiWorld /> {data.original_language.toUpperCase()}
+                  {`${data.media_type} - ${data.original_language.toUpperCase()}`}
                </StyledParagraph>
             </StyledFigcaption>
          </StyledCardLink>

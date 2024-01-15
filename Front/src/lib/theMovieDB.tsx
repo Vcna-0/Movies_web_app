@@ -28,7 +28,11 @@ export async function getTrending() {
 export async function getMovieByPopularity() {
    try {
       const res = await fetch(`${TMDB_ENDPOINT}/movie/popular?api_key=${API_KEY}`);
-      return (await res.json()).results;
+      const movies = (await res.json()).results.map((movie: MovieResult) => ({
+         ...movie,
+         media_type: 'movie',
+      }));
+      return movies;
    } catch (err) {
       return console.error(err);
    }
@@ -37,7 +41,20 @@ export async function getMovieByPopularity() {
 export async function getTvByPopularity() {
    try {
       const res = await fetch(`${TMDB_ENDPOINT}/tv/popular?api_key=${API_KEY}`);
-      return (await res.json()).results;
+      const tvShows = (await res.json()).results.map((tvShow: TvResult) => ({
+         ...tvShow,
+         media_type: 'tv',
+      }));
+      return tvShows;
+   } catch (err) {
+      return console.error(err);
+   }
+}
+
+export async function findById(id: number, mediaType: string) {
+   try {
+      const res = await fetch(`https://api.themoviedb.org/3/${mediaType}/${id}?api_key=${API_KEY}`);
+      return await res.json();
    } catch (err) {
       return console.error(err);
    }
