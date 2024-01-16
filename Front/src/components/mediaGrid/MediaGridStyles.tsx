@@ -4,7 +4,7 @@ export const StyledContainer = styled.div`
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   margin: 0px 20px;
+   padding: 15px;
 `;
 
 export const StyledGridResults = styled.div`
