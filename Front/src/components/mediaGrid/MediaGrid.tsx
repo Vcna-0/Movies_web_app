@@ -1,6 +1,6 @@
 import { MovieResult, TvResult } from '@/type';
 import { StyledContainer, StyledGridResults, StyledParagraph } from './MediaGridStyles';
-import ClassicCard from '../shared/classicCard/ClassicCard';
+import ClassicCard from '../shared/cards/classicCard/ClassicCard';
 
 type Props = {
    dataMedia: Array<MovieResult | TvResult>;
@@ -15,6 +15,7 @@ const formatDate = (date: string) => {
 };
 
 export default function MediaGrid({ dataMedia, titleSection }: Props) {
+   console.log('dataMedia', typeof dataMedia);
    return (
       <StyledContainer>
          <StyledParagraph>{titleSection}</StyledParagraph>

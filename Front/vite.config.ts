@@ -14,6 +14,9 @@ export default defineConfig({
          '@components': path.resolve(__dirname, 'src/components/'),
          '@pages': path.resolve(__dirname, 'src/pages/'),
          '@assets': path.resolve(__dirname, 'src/assets/'),
+         '@type': path.resolve(__dirname, 'src/type.tsx/'),
+         '@hooks': path.resolve(__dirname, 'src/hooks/'),
+         '@lib': path.resolve(__dirname, 'src/lib/'),
       },
    },
    define: {

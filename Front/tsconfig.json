@@ -11,7 +11,9 @@
          "@components/*": ["./src/components/*"],
          "@pages/*": ["./src/pages/*"],
          "@assets/*": ["./src/assets/*"],
-         "@type": ["./src/type.tsx"]
+         "@type": ["./src/type.tsx"],
+         "@hooks/*": ["./src/hooks/*"],
+         "@lib/*": ["./src/lib/*"]
       },
 
       /* Bundler mode */

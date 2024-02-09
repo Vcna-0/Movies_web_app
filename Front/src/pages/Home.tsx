@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { MovieResult, TvResult } from '../type';
-import { getTrending, getMovieByPopularity, getTvByPopularity } from '@/lib/theMovieDB';
+import { MovieResult, TvResult } from '@type';
+import { getTrending, getMovieByPopularity, getTvByPopularity } from '@lib/theMovieDB';
 import Menu from '@components/menu/Menu';
 import SearchBar from '@components/searchBar/SearchBar';
-import MediaGrid from '@/components/mediaGrid/MediaGrid';
-import TrendingSlider from '@/components/trendingSlider/TrendingSlider';
-import ScrollToTopButton from '@/components/scrollToTopButton/ScrollToTopButton';
-import useMobileDetect from '@/hooks/useMobileDetect';
+import TrendingSlider from '@/components/shared/sliders/trendingSlider/TrendingSlider';
+import MediaGrid from '@components/mediaGrid/MediaGrid';
+import ScrollToTopButton from '@components/scrollToTopButton/ScrollToTopButton';
+import useMobileDetect from '@hooks/useMobileDetect';
 import { StyledHomePage, StyledMain } from './PagesStyles';
 import IconMovie from '@assets/IconMovieWhite.svg';
 import IconTV from '@assets/IconTVserieWhite.svg';
@@ -50,7 +50,7 @@ export default function Home() {
                />
             ) : (
                <>
-                  <TrendingSlider dataTrending={trendingList} type="trendingCard" />
+                  <TrendingSlider data={trendingList} />
                   <MediaGrid
                      dataMedia={popularMovieList}
                      typeCard="classicCard"

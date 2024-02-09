@@ -1,17 +1,16 @@
 import missingImg from '@assets/MissingImg.svg';
+import ButtonBookmark from '@components/buttonBookmark/ButtonBookmark';
 import {
    StyledCardLink,
    StyledImg,
-   StyledBookmark,
    StyledFigcaption,
    StyledTitle,
    StyledParagraph,
    StyledFigure,
 } from './GenericCardStyles';
-import { HiOutlineBookmark } from 'react-icons/hi2';
 
 export interface GenericCardProps {
-   link: string;
+   link?: string;
    name: string;
    description: string;
    imgPath: string;
@@ -31,20 +30,15 @@ export default function GenericCard({
 }: GenericCardProps) {
    return (
       <StyledFigure className={className}>
-         <StyledCardLink to={link}>
+         <StyledCardLink to={link || ''}>
             <StyledImg src={imgPath || missingImg} isMissing={!imgPath} />
             {children}
-            {bookmark == true && (
-               <StyledBookmark>
-                  <HiOutlineBookmark />
-                  {/* <HiMiniBookmark/>  icon bookmark remplie */}
-               </StyledBookmark>
-            )}
             <StyledFigcaption>
                <StyledTitle>{name}</StyledTitle>
                <StyledParagraph>{description}</StyledParagraph>
             </StyledFigcaption>
          </StyledCardLink>
+         {bookmark == true && <ButtonBookmark buttonCard />}
       </StyledFigure>
    );
 }

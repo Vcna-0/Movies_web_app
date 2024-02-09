@@ -38,7 +38,23 @@ export interface MediaDetailsType {
    popularity: number;
    first_air_date: string;
    release_date: string;
+   genres: { id: number; name: string }[];
+   runtime: number;
+   vote_average: number;
+   vote_count: number;
+   overview: string;
 }
+
+export interface CastingsType {
+   id: number;
+   name: string;
+   character: string;
+   profile_path: string;
+}
+
+export type SliderMovieType = MovieResult | TvResult;
+
+export type SliderCastingsType = CastingsType;
 
 export interface IFormInputSearch {
    searchName: string;
@@ -47,4 +63,5 @@ export interface IFormInputSearch {
 export enum ETypeCard {
    trendingCard = 'trendingCard',
    classicCard = 'classicCard',
+   castingCard = 'castingCard',
 }
