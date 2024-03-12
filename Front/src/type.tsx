@@ -50,6 +50,7 @@ export interface CastingsType {
    name: string;
    character: string;
    profile_path: string;
+   title: string;
 }
 
 export type SliderMovieType = MovieResult | TvResult;

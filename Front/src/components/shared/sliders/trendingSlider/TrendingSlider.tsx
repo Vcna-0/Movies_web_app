@@ -13,6 +13,7 @@ export default function TrendingSlider({ data }: { data: SliderMovieType[] }) {
    return (
       <TrendingSliderStyles
          data={data}
+         title="Trending"
          renderItem={(item: SliderMovieType) => (
             <StyledTest>
                <SliderCard

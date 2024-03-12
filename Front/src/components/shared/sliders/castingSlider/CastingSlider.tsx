@@ -10,6 +10,7 @@ export default function CastingSlider({ data }: { data: SliderCastingsType[] }) 
    return (
       <StyledCastingSlider
          data={data}
+         title="Casting"
          renderItem={(item: CastingsType) => (
             <StyledTest>
                <CastingCard

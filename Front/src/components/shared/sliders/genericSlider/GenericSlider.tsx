@@ -17,12 +17,14 @@ export interface GenericSliderProps<T extends { id: React.Key }> {
    data: T[];
    renderItem: (item: T) => React.ReactNode;
    className?: string;
+   title?: string;
 }
 
 export default function GenericSlider<T extends { id: React.Key }>({
    data,
    renderItem,
    className,
+   title,
 }: GenericSliderProps<T>) {
    const [currentSlide, setCurrentSlide] = useState(0);
    const sliderContainerRef = useRef(null);
@@ -35,7 +37,7 @@ export default function GenericSlider<T extends { id: React.Key }>({
 
    return (
       <StyledContainer className={className}>
-         <StyledTitle>Trending</StyledTitle>
+         <StyledTitle>{title}</StyledTitle>
          <StyledSlider>
             <SliderButtonLeft onClick={() => handleSlideChange(-1)}>
                <MdOutlineArrowBackIos />

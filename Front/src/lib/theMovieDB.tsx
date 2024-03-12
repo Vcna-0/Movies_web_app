@@ -68,3 +68,12 @@ export async function getMovieCast(id: number) {
       return console.error(err);
    }
 }
+
+export async function getMovieTrailer(id: number) {
+   try {
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`);
+      return await res.json();
+   } catch (err) {
+      return console.error(err);
+   }
+}
