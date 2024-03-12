@@ -2,14 +2,32 @@ import styled from 'styled-components';
 import GenericCard from '../genericCard/GenericCard';
 
 export const StyledCastingCard = styled(GenericCard)`
-   width: 129px;
+   height: 195px;
+
+   @media screen and (min-width: 1024px) {
+      height: 210px;
+   }
 
    img {
-      height: 160px;
-      border-radius: 8px 8px 0 0;
+      height: 100%;
+
+      @media screen and (max-width: 768px) {
+         border-radius: 0;
+      }
+
+      @media screen and (min-width: 1024px) {
+         height: 100%;
+      }
    }
 
    figcaption {
-      /* background-color: var(--clr-SemiDarkBlue); */
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 16px 16px;
+   }
+
+   p {
+      color: var(--clr-White);
    }
 `;

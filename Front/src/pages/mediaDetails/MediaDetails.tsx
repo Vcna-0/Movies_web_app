@@ -3,7 +3,7 @@ import { findById, getMovieCast } from '@/lib/theMovieDB';
 import { useEffect, useState } from 'react';
 import Menu from '@/components/menu/Menu';
 import ButtonBookmark from '@/components/buttonBookmark/ButtonBookmark';
-import { CastingsType, MediaDetailsType } from '@/type';
+import { MediaDetailsType } from '@/type';
 import { Navigate } from 'react-router-dom';
 import {
    StyledMain,
@@ -20,7 +20,6 @@ import {
    StyledSynopsisContainer,
 } from './MediaDetailsStyles';
 import React from 'react';
-import CastingCard from '@/components/shared/cards/castingCard/CastingCard';
 import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
 
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
@@ -32,8 +31,8 @@ export default function MediaDetails() {
 
    const [notFound, setNotFound] = useState(false);
    const [infosMedia, setInfosMedia] = useState<MediaDetailsType | null>(null);
-   const [casting, setCasting] = useState<CastingsType[]>([]);
-
+   const [casting, setCasting] = useState([]);
+   console.log('casting:', casting);
    useEffect(() => {
       const idAsNumber = parseInt(id ?? '', 10);
       if (!isNaN(idAsNumber)) {
@@ -65,8 +64,6 @@ export default function MediaDetails() {
    if (notFound) {
       return <Navigate to="/Error" />;
    }
-
-   console.log('casting:', typeof casting);
 
    function getYearFromDateString(dateString: string) {
       return dateString.split('-')[0];
@@ -119,16 +116,6 @@ export default function MediaDetails() {
                   {infosMedia.overview}
                </StyledSynopsisContainer>
                <CastingSlider data={casting} />
-               {casting &&
-                  casting.map((element) => (
-                     <CastingCard
-                        key={element.id}
-                        name={element.name}
-                        description={element.character}
-                        imgPath={element.profile_path ? `${IMAGE_ENDPOINT}/original${element.profile_path}` : ``}
-                        bookmark={false}
-                     />
-                  ))}
             </StyledMain>
          )}
       </div>

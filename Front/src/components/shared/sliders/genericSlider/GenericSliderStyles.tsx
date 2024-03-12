@@ -36,11 +36,6 @@ export const SliderContainer = styled.div`
    }
 `;
 
-export const CardWrapper = styled.div`
-   min-width: 350px;
-   flex: 0 0 19.7%;
-`;
-
 export const SliderButton = styled.button`
    display: none;
 

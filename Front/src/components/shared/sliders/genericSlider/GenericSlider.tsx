@@ -9,7 +9,9 @@ import {
    CardWrapper,
    SliderButtonLeft,
    SliderButtonRight,
+   StyledTest,
 } from './GenericSliderStyles';
+import React from 'react';
 
 export interface GenericSliderProps<T extends { id: React.Key }> {
    data: T[];
@@ -43,8 +45,7 @@ export default function GenericSlider<T extends { id: React.Key }>({
                   .slice(currentSlide)
                   .concat(data.slice(0, currentSlide))
                   .map((item) => {
-                     console.log(item.id);
-                     return <CardWrapper key={item.id}>{renderItem(item)}</CardWrapper>;
+                     return <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>;
                   })}
             </SliderContainer>
             <SliderButtonRight onClick={() => handleSlideChange(1)}>
