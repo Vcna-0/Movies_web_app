@@ -1,8 +1,8 @@
-# Formation developpeur web - OPENCLASSROOM
+# Frontend Mentor - Movies web app
 
 Ma solution au challenge de __frontend mentor__.
 
-![Logo](chemin du logo) 
+![Logo](Front/src/assets/MovieIcon.svg) 
 
 ## Table des matières
 
