@@ -26,6 +26,12 @@ Ma solution au challenge de __frontend mentor__.
 
 1. Cloner le projet
 2. `npm install` puis `npm run dev` dans les dossiers Front et Back
+3. Créer un fichier `.env.local`
+4. ajouter :`
+VITE_APP_API_KEY = votreCléApiTheMovieDB
+VITE_APP_TMDB_ENDPOINT = "https://api.themoviedb.org/3"
+VITE_APP_TMDB_IMAGE_ENDPOINT = "https://image.tmdb.org/t/p"
+VITE_YT_API_KEY = votreCléApiYoutube`  
 
 ### Contexte du projet
 
