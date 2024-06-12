@@ -1,7 +1,8 @@
 // import GenericSlider from '@components/shared/sliders/genericSlider/GenericSlider';
 import SliderCard from '@components/shared/cards/sliderCard/SliderCard';
 import { SliderMovieType } from '@/type';
-import { TrendingSliderStyles, StyledTest } from './TrendingSliderStyles';
+import { TrendingSliderStyles } from './TrendingSliderStyles';
+import { StyledCard } from '../trendingSlider/TrendingSliderStyles';
 
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
@@ -15,7 +16,7 @@ export default function TrendingSlider({ data }: { data: SliderMovieType[] }) {
          data={data}
          title="Trending"
          renderItem={(item: SliderMovieType) => (
-            <StyledTest>
+            <StyledCard>
                <SliderCard
                   key={item.id}
                   link={`/${item.media_type}/${item.id}`}
@@ -30,7 +31,7 @@ export default function TrendingSlider({ data }: { data: SliderMovieType[] }) {
                   }
                   bookmark={true}
                />
-            </StyledTest>
+            </StyledCard>
          )}
       />
    );

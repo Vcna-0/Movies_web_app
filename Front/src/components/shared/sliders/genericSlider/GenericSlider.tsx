@@ -6,10 +6,8 @@ import {
    StyledTitle,
    StyledSlider,
    SliderContainer,
-   CardWrapper,
    SliderButtonLeft,
    SliderButtonRight,
-   StyledTest,
 } from './GenericSliderStyles';
 import React from 'react';
 
@@ -31,7 +29,6 @@ export default function GenericSlider<T extends { id: React.Key }>({
 
    const handleSlideChange = (increment: number) => {
       const slideIncrement = window.innerWidth <= 768 ? increment : increment * 2;
-      // setCurrentSlide((currentSlide + slideIncrement + data.length) % data.length);
       setCurrentSlide((prevSlide) => (prevSlide + slideIncrement + data.length) % data.length);
    };
 

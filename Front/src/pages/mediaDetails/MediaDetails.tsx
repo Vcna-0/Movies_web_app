@@ -6,6 +6,7 @@ import ButtonBookmark from '@/components/buttonBookmark/ButtonBookmark';
 import { MediaDetailsType } from '@/type';
 import { Navigate } from 'react-router-dom';
 import {
+   StyledMediaDetailsPage,
    StyledMain,
    StyledTitleContainer,
    StyledTitle,
@@ -18,6 +19,7 @@ import {
    StyledAverage,
    StyledVoteCount,
    StyledSynopsisContainer,
+   SectionTruc,
 } from './MediaDetailsStyles';
 import React from 'react';
 import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
@@ -44,7 +46,7 @@ export default function MediaDetails() {
    }, [id]);
 
    useEffect(() => {
-      if (numericId !== null && type !== null) {
+      if (numericId !== null && type !== undefined) {
          const fetchDetails = async () => {
             try {
                const response = await findById(numericId, type);
@@ -75,20 +77,22 @@ export default function MediaDetails() {
    }
 
    return (
-      <div>
+      <StyledMediaDetailsPage>
          <Menu />
          {infosMedia && (
             <StyledMain>
                <StyledTitleContainer>
                   <StyledTitle>
                      {infosMedia.title || infosMedia.name} (
-                     {getYearFromDateString(infosMedia.release_date) ||
-                        getYearFromDateString(infosMedia.first_air_date)}
+                     {infosMedia.release_date
+                        ? getYearFromDateString(infosMedia.release_date)
+                        : infosMedia.first_air_date
+                        ? getYearFromDateString(infosMedia.first_air_date)
+                        : ''}
                      )
                   </StyledTitle>
                   <ButtonBookmark />
                </StyledTitleContainer>
-
                <StyledImg src={`${IMAGE_ENDPOINT}/original${infosMedia.poster_path}`} alt="" />
                <StyledInfoContainer>
                   <StyledInfoDetails>
@@ -116,8 +120,10 @@ export default function MediaDetails() {
                   {infosMedia.overview}
                </StyledSynopsisContainer>
                <CastingSlider data={casting} />
+               {/* <CastingCard name={'nom'} description={'description'} imgPath={'test'} /> */}
+               {/* <GenericCard name={'nom'} description={'description'} imgPath={'test'}></GenericCard> */}
             </StyledMain>
          )}
-      </div>
+      </StyledMediaDetailsPage>
    );
 }
