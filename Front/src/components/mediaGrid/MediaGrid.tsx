@@ -15,7 +15,6 @@ const formatDate = (date: string) => {
 };
 
 export default function MediaGrid({ dataMedia, titleSection }: Props) {
-   console.log('dataMedia', typeof dataMedia);
    return (
       <StyledContainer>
          <StyledParagraph>{titleSection}</StyledParagraph>

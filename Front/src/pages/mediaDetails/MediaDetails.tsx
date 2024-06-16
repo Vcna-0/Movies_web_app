@@ -6,7 +6,6 @@ import ButtonBookmark from '@/components/buttonBookmark/ButtonBookmark';
 import { MediaDetailsType } from '@/type';
 import { Navigate } from 'react-router-dom';
 import {
-   StyledMediaDetailsPage,
    StyledMain,
    StyledTitleContainer,
    StyledTitle,
@@ -19,7 +18,7 @@ import {
    StyledAverage,
    StyledVoteCount,
    StyledSynopsisContainer,
-   SectionTruc,
+   StyledMainInformations,
 } from './MediaDetailsStyles';
 import React from 'react';
 import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
@@ -34,7 +33,6 @@ export default function MediaDetails() {
    const [notFound, setNotFound] = useState(false);
    const [infosMedia, setInfosMedia] = useState<MediaDetailsType | null>(null);
    const [casting, setCasting] = useState([]);
-   console.log('infosMedia:', infosMedia);
    useEffect(() => {
       const idAsNumber = parseInt(id ?? '', 10);
       if (!isNaN(idAsNumber)) {
@@ -77,53 +75,55 @@ export default function MediaDetails() {
    }
 
    return (
-      <StyledMediaDetailsPage>
+      <div>
          <Menu />
          {infosMedia && (
             <StyledMain>
-               <StyledTitleContainer>
-                  <StyledTitle>
-                     {infosMedia.title || infosMedia.name} (
-                     {infosMedia.release_date
-                        ? getYearFromDateString(infosMedia.release_date)
-                        : infosMedia.first_air_date
-                        ? getYearFromDateString(infosMedia.first_air_date)
-                        : ''}
-                     )
-                  </StyledTitle>
-                  <ButtonBookmark />
-               </StyledTitleContainer>
-               <StyledImg src={`${IMAGE_ENDPOINT}/original${infosMedia.poster_path}`} alt="" />
-               <StyledInfoContainer>
-                  <StyledInfoDetails>
-                     <StyledGenres>
-                        {infosMedia.genres.map((genre, index) => (
-                           <React.Fragment key={index}>
-                              <p>{genre.name}</p>
-                              {index !== infosMedia.genres.length - 1 && <>,&nbsp;</>}
-                           </React.Fragment>
-                        ))}
-                     </StyledGenres>
-                     <StyledRuntimeLanguage>
-                        {Math.floor(infosMedia.runtime / 60)}h {infosMedia.runtime % 60}m -{' '}
-                        {convertLanguageCode(infosMedia.original_language)}
-                     </StyledRuntimeLanguage>
-                  </StyledInfoDetails>
+               <StyledMainInformations>
+                  <StyledTitleContainer>
+                     <StyledTitle>
+                        {infosMedia.title || infosMedia.name} (
+                        {infosMedia.release_date
+                           ? getYearFromDateString(infosMedia.release_date)
+                           : infosMedia.first_air_date
+                           ? getYearFromDateString(infosMedia.first_air_date)
+                           : ''}
+                        )
+                     </StyledTitle>
+                     <ButtonBookmark />
+                  </StyledTitleContainer>
+                  <StyledImg src={`${IMAGE_ENDPOINT}/original${infosMedia.poster_path}`} alt="" />
+                  <StyledInfoContainer>
+                     <StyledInfoDetails>
+                        <StyledGenres>
+                           {infosMedia.genres.map((genre, index) => (
+                              <React.Fragment key={index}>
+                                 <p>{genre.name}</p>
+                                 {index !== infosMedia.genres.length - 1 && <>,&nbsp;</>}
+                              </React.Fragment>
+                           ))}
+                        </StyledGenres>
+                        <StyledRuntimeLanguage>
+                           {Math.floor(infosMedia.runtime / 60)}h {infosMedia.runtime % 60}m -{' '}
+                           {convertLanguageCode(infosMedia.original_language)}
+                        </StyledRuntimeLanguage>
+                     </StyledInfoDetails>
 
-                  <StyledVotes>
-                     <StyledAverage>{infosMedia.vote_average.toFixed(1)}</StyledAverage>
-                     <StyledVoteCount>{infosMedia.vote_count} votes</StyledVoteCount>
-                  </StyledVotes>
-               </StyledInfoContainer>
-               <StyledSynopsisContainer>
-                  <h2>Synopsis</h2>
-                  {infosMedia.overview}
-               </StyledSynopsisContainer>
+                     <StyledVotes>
+                        <StyledAverage>{infosMedia.vote_average.toFixed(1)}</StyledAverage>
+                        <StyledVoteCount>{infosMedia.vote_count} votes</StyledVoteCount>
+                     </StyledVotes>
+                  </StyledInfoContainer>
+                  <StyledSynopsisContainer>
+                     <h2>Synopsis</h2>
+                     {infosMedia.overview}
+                  </StyledSynopsisContainer>
+               </StyledMainInformations>
                <CastingSlider data={casting} />
                {/* <CastingCard name={'nom'} description={'description'} imgPath={'test'} /> */}
                {/* <GenericCard name={'nom'} description={'description'} imgPath={'test'}></GenericCard> */}
             </StyledMain>
          )}
-      </StyledMediaDetailsPage>
+      </div>
    );
 }

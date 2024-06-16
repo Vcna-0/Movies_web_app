@@ -5,7 +5,7 @@ import { StyledCastingSlider, StyledCard } from './CastingSliderStyles';
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
 export default function CastingSlider({ data }: { data: SliderCastingsType[] }) {
-   const renderItem = (item: CastingsType) => {
+   const handleCards = (item: CastingsType) => {
       return (
          <StyledCard>
             <CastingCard
@@ -19,5 +19,5 @@ export default function CastingSlider({ data }: { data: SliderCastingsType[] }) 
       );
    };
 
-   return <StyledCastingSlider data={data} title="Casting" renderItem={renderItem} />;
+   return <StyledCastingSlider data={data} title="Casting" renderItem={handleCards} />;
 }

@@ -1,26 +1,15 @@
 import styled from 'styled-components';
 
-export const StyledMediaDetailsPage = styled.div`
-   display: flex;
-   flex-direction: column;
-`;
-
 export const StyledMain = styled.main`
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 15px;
-   padding: 20px;
+   margin: 0 auto;
+   width: 90%;
+   margin-top: 50px;
 
    @media screen and (min-width: 1024px) {
       width: 95%;
       max-width: 1550px;
-      margin: 0 auto;
       gap: 3.5rem;
-   }
-   @media screen and (min-width: 1024px) {
-      margin-left: 200px;
-      margin-top: 50px;
+      padding-left: 200px;
    }
 `;
 
@@ -97,4 +86,11 @@ export const StyledSynopsisContainer = styled.div`
    font: var(--font-BodyMedium);
    color: var(--clr-White);
    background-color: var(--clr-SemiDarkBlue);
+`;
+
+export const StyledMainInformations = styled.section`
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 20px;
 `;

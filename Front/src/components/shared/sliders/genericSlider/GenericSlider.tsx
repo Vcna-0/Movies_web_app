@@ -40,12 +40,13 @@ export default function GenericSlider<T extends { id: React.Key }>({
                <MdOutlineArrowBackIos />
             </SliderButtonLeft>
             <SliderContainer ref={sliderContainerRef}>
-               {data
-                  .slice(currentSlide)
-                  .concat(data.slice(0, currentSlide))
-                  .map((item) => {
-                     return <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>;
-                  })}
+               {data &&
+                  data
+                     .slice(currentSlide)
+                     .concat(data.slice(0, currentSlide))
+                     .map((item) => {
+                        return <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>;
+                     })}
             </SliderContainer>
             <SliderButtonRight onClick={() => handleSlideChange(1)}>
                <MdArrowForwardIos />
