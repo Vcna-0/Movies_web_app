@@ -28,7 +28,7 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
                      name={data.title || data.name}
                      description={`${formatDate(data.release_date)}
                      ${data.media_type} - 
-                     ${data.original_language.toUpperCase()}`}
+                     ${data.original_language && data.original_language.toUpperCase()}`}
                      imgPath={
                         data.backdrop_path
                            ? `${IMAGE_ENDPOINT}/original${data.backdrop_path}`
