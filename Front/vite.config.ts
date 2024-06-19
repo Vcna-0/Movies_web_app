@@ -17,6 +17,7 @@ export default defineConfig({
          '@type': path.resolve(__dirname, 'src/type.tsx/'),
          '@hooks': path.resolve(__dirname, 'src/hooks/'),
          '@lib': path.resolve(__dirname, 'src/lib/'),
+         '@context': path.resolve(__dirname, 'src/context/'),
       },
    },
    define: {
