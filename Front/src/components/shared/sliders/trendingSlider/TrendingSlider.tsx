@@ -12,6 +12,7 @@ export default function TrendingSlider({ data }: { data: SliderMovieType[] }) {
          <StyledCard>
             <SliderCard
                key={item.id}
+               idMedia={item.id}
                link={`/${item.media_type}/${item.id}`}
                name={item.title || item.name}
                description={`${item.release_date ? item.release_date.substring(0, 4) + ' - ' : ''}${

@@ -11,6 +11,7 @@ import {
 
 export interface GenericCardProps {
    link?: string;
+   idMedia: number;
    name: string;
    description: string;
    imgPath: string;
@@ -21,6 +22,7 @@ export interface GenericCardProps {
 
 export default function GenericCard({
    children,
+   idMedia,
    link,
    name,
    description,
@@ -38,7 +40,7 @@ export default function GenericCard({
                <StyledParagraph>{description}</StyledParagraph>
             </StyledFigcaption>
          </StyledCardLink>
-         {bookmark == true && <ButtonBookmark buttonCard />}
+         {bookmark == true && <ButtonBookmark idMedia={idMedia} buttonCard={true} />}
       </StyledFigure>
    );
 }

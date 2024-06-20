@@ -24,6 +24,7 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
                .map((data) => (
                   <ClassicCard
                      key={data.id}
+                     idMedia={data.id}
                      link={`/${data.media_type}/${data.id}`}
                      name={data.title || data.name}
                      description={`${formatDate(data.release_date)}
