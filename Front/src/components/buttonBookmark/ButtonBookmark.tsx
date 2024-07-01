@@ -14,7 +14,7 @@ export default function ButtonBookmark({ idMedia, buttonCard }: ButtonBookmarkPr
    const { user } = useAuth();
    const [isBookmarked, setIsBookmarked] = useState(false);
    const navigate = useNavigate();
-
+   const token = localStorage.getItem('token');
    const handleBookmarkClick = async () => {
       if (!user) {
          navigate('/login');
@@ -27,7 +27,7 @@ export default function ButtonBookmark({ idMedia, buttonCard }: ButtonBookmarkPr
             { idMedia },
             {
                headers: {
-                  Authorization: `Bearer ${user.userId}`,
+                  Authorization: `Bearer ${token}`,
                },
             }
          );
