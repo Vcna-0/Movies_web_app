@@ -77,3 +77,12 @@ export async function getMovieTrailer(id: number) {
       return console.error(err);
    }
 }
+
+export async function getBookmarks(id: string) {
+   try {
+      const res = await fetch(`http://localhost:3000/api/bookmarks/getBookmarks/${id}`);
+      return await res.json();
+   } catch (err) {
+      return console.error(err);
+   }
+}

@@ -1,6 +1,6 @@
 const BookmarkModel = require('../models/BookmarksModel');
 
-exports.add = async (req, res, next) => {
+exports.addOrRemoveBookmarks = async (req, res, next) => {
     const userId = req.auth.userId;
     const { idMedia } = req.body;
 
@@ -20,9 +20,14 @@ exports.add = async (req, res, next) => {
     }
 };
 
-exports.get = async (req, res) => {
+exports.getBookmarksByUserId = async (req, res) => {
+    const userId = req.auth?.userId;
+
+    if (!userId) {
+        return res.status(401).json({ error: 'User not authenticated' });
+    }
    try {
-      const bookmarks = await BookmarkModel.find({ CurrentUserId: req.auth.userId });
+      const bookmarks = await BookmarkModel.find({ userId });
       return res.status(200).json(bookmarks);
    } 
    catch (error) {

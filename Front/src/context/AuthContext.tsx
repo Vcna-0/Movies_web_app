@@ -24,7 +24,6 @@ export const AuthProvider: FC<Props> = ({ children }) => {
    const login = (token: string) => {
       localStorage.setItem('token', token);
       const decodedUser = jwtDecode<User>(token);
-      console.log('decodedUser', decodedUser);
       setUser(decodedUser);
    };
 

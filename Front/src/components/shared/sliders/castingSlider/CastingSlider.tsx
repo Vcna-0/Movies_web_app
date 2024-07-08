@@ -13,7 +13,8 @@ export default function CastingSlider({ data }: { data: SliderCastingsType[] }) 
                name={item.name}
                description={item.character}
                imgPath={item.profile_path ? `${IMAGE_ENDPOINT}/original${item.profile_path}` : ``}
-               bookmark={false}
+               buttonBookmarkVisible={false}
+               idMedia={item.id}
             />
          </StyledCard>
       );

@@ -23,7 +23,7 @@ export default function TrendingSlider({ data }: { data: SliderMovieType[] }) {
                      ? `${IMAGE_ENDPOINT}/original${item.backdrop_path}`
                      : `${IMAGE_ENDPOINT}/original${item.poster_path}`
                }
-               bookmark={true}
+               buttonBookmarkVisible={true}
             />
          </StyledCard>
       );

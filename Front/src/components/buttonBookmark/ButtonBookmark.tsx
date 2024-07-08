@@ -1,20 +1,23 @@
 import { HiMiniBookmark, HiOutlineBookmark } from 'react-icons/hi2';
 import { StyledButtonBookmark } from './ButtonBookmarkStyle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Bookmark } from '../mediaGrid/MediaGrid';
 
 export type ButtonBookmarkProps = {
    idMedia: number;
    buttonCard?: boolean;
+   bookmarked?: boolean;
+   refreshBookmarks?: () => void;
 };
 
-export default function ButtonBookmark({ idMedia, buttonCard }: ButtonBookmarkProps) {
+export default function ButtonBookmark({ idMedia, buttonCard, bookmarked, refreshBookmarks }: ButtonBookmarkProps) {
    const { user } = useAuth();
-   const [isBookmarked, setIsBookmarked] = useState(false);
    const navigate = useNavigate();
    const token = localStorage.getItem('token');
+
    const handleBookmarkClick = async () => {
       if (!user) {
          navigate('/login');
@@ -33,7 +36,10 @@ export default function ButtonBookmark({ idMedia, buttonCard }: ButtonBookmarkPr
          );
 
          if (response.status === 200) {
-            setIsBookmarked(!isBookmarked);
+            console.log('test');
+            if (refreshBookmarks) {
+               refreshBookmarks();
+            }
          }
       } catch (error) {
          console.error('Error toggling bookmark:', error);
@@ -42,9 +48,8 @@ export default function ButtonBookmark({ idMedia, buttonCard }: ButtonBookmarkPr
 
    return (
       <StyledButtonBookmark idMedia={idMedia} buttonCard={buttonCard} onClick={handleBookmarkClick}>
-         {isBookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />}
-         {/* <HiOutlineBookmark /> */}
-         {/* <HiMiniBookmark/>  icon bookmark remplie */}
+         {/* {isBookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />} */}
+         {bookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />}
       </StyledButtonBookmark>
    );
 }

@@ -8,6 +8,7 @@ import {
    StyledParagraph,
    StyledFigure,
 } from './GenericCardStyles';
+import { Bookmark } from '@/components/mediaGrid/MediaGrid';
 
 export interface GenericCardProps {
    link?: string;
@@ -15,9 +16,11 @@ export interface GenericCardProps {
    name: string;
    description: string;
    imgPath: string;
-   bookmark?: boolean;
+   buttonBookmarkVisible?: boolean;
+   bookmarked?: boolean;
    className?: string;
    children?: React.ReactNode;
+   refreshBookmarks?: () => void;
 }
 
 export default function GenericCard({
@@ -27,8 +30,10 @@ export default function GenericCard({
    name,
    description,
    imgPath,
-   bookmark,
+   buttonBookmarkVisible,
+   bookmarked,
    className,
+   refreshBookmarks,
 }: GenericCardProps) {
    return (
       <StyledFigure className={className}>
@@ -40,7 +45,14 @@ export default function GenericCard({
                <StyledParagraph>{description}</StyledParagraph>
             </StyledFigcaption>
          </StyledCardLink>
-         {bookmark == true && <ButtonBookmark idMedia={idMedia} buttonCard={true} />}
+         {buttonBookmarkVisible == true && (
+            <ButtonBookmark
+               idMedia={idMedia}
+               buttonCard={true}
+               bookmarked={bookmarked}
+               refreshBookmarks={refreshBookmarks}
+            />
+         )}
       </StyledFigure>
    );
 }
