@@ -17,7 +17,7 @@ export interface GenericCardProps {
    description: string;
    imgPath: string;
    buttonBookmarkVisible?: boolean;
-   bookmarked?: boolean;
+   isBookmarked?: boolean;
    className?: string;
    children?: React.ReactNode;
    refreshBookmarks?: () => void;
@@ -31,7 +31,7 @@ export default function GenericCard({
    description,
    imgPath,
    buttonBookmarkVisible,
-   bookmarked,
+   isBookmarked,
    className,
    refreshBookmarks,
 }: GenericCardProps) {
@@ -49,7 +49,7 @@ export default function GenericCard({
             <ButtonBookmark
                idMedia={idMedia}
                buttonCard={true}
-               bookmarked={bookmarked}
+               isBookmarked={isBookmarked}
                refreshBookmarks={refreshBookmarks}
             />
          )}

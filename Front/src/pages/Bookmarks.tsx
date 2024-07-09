@@ -2,41 +2,53 @@ import MediaGrid from '@/components/mediaGrid/MediaGrid';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { findById } from '@/lib/theMovieDB';
+import { MovieResult, TvResult } from '@/type';
+
+interface Bookmark {
+   movieId: number;
+   id: number;
+}
+
+const fetchBookmarks = async (setBookmarks: React.Dispatch<React.SetStateAction<Bookmark[]>>) => {
+   const token = localStorage.getItem('token');
+   if (!token) return;
+
+   try {
+      const response = await axios.get('http://localhost:3000/api/bookmarks/getBookmarks', {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      });
+      setBookmarks(response.data);
+   } catch (error) {
+      console.error('Error fetching bookmarks:', error);
+   }
+};
+
+const fetchMedia = async (
+   bookmarks: Bookmark[],
+   setResult: React.Dispatch<React.SetStateAction<MovieResult[] | TvResult[]>>
+) => {
+   const mediaPromises = bookmarks.map((bookmark) => findById(bookmark.movieId, 'movie'));
+   const mediaResults = await Promise.all(mediaPromises);
+   setResult(mediaResults);
+};
 
 export default function Bookmarks() {
-   interface Bookmark {
-      movieId: number;
-      id: number;
-   }
    const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
-
-   const fetchBookmarks = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      try {
-         const response = await axios.get('http://localhost:3000/api/bookmarks/getBookmarks', {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-         });
-         setBookmarks(response.data);
-      } catch (error) {
-         console.error('Error fetching bookmarks:', error);
-      }
-   };
+   const [result, setResult] = useState<MovieResult[] | TvResult[]>([]);
 
    useEffect(() => {
-      fetchBookmarks();
+      fetchBookmarks(setBookmarks);
    }, []);
 
-   const [result, setResult] = useState<any[]>([]);
    useEffect(() => {
-      bookmarks.map(async (bookmark) => {
-         const media = await findById(bookmark.movieId, 'movie');
-         setResult((prev) => [...prev, media]);
-      });
+      if (bookmarks.length > 0) {
+         fetchMedia(bookmarks, setResult);
+      }
    }, [bookmarks]);
+
+   console.log(result, 'result');
 
    return <MediaGrid titleSection="Bookmarks" dataMedia={result} typeCard="classicCard" />;
 }

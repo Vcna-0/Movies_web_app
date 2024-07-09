@@ -9,11 +9,11 @@ import { Bookmark } from '../mediaGrid/MediaGrid';
 export type ButtonBookmarkProps = {
    idMedia: number;
    buttonCard?: boolean;
-   bookmarked?: boolean;
+   isBookmarked?: boolean;
    refreshBookmarks?: () => void;
 };
 
-export default function ButtonBookmark({ idMedia, buttonCard, bookmarked, refreshBookmarks }: ButtonBookmarkProps) {
+export default function ButtonBookmark({ idMedia, buttonCard, isBookmarked, refreshBookmarks }: ButtonBookmarkProps) {
    const { user } = useAuth();
    const navigate = useNavigate();
    const token = localStorage.getItem('token');
@@ -49,7 +49,7 @@ export default function ButtonBookmark({ idMedia, buttonCard, bookmarked, refres
    return (
       <StyledButtonBookmark idMedia={idMedia} buttonCard={buttonCard} onClick={handleBookmarkClick}>
          {/* {isBookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />} */}
-         {bookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />}
+         {isBookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />}
       </StyledButtonBookmark>
    );
 }

@@ -54,11 +54,6 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
       refreshBookmarks();
    }, []);
 
-   // useEffect(() => {
-   //    fetchBookmarks(setBookmarks);
-   // }, [bookmarks]);
-
-   console.log('bookmarks:', bookmarks);
    // =============================
 
    return (
@@ -69,8 +64,6 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
                .sort((a, b) => b.popularity - a.popularity)
                .map((data) => {
                   const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId === data.id.toString());
-                  console.log('isBookmarked:', isBookmarked);
-                  // const isBookmarked = movieIds.includes(data.id.toString());
                   return (
                      <ClassicCard
                         key={data.id}
@@ -86,7 +79,7 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
                               : `${IMAGE_ENDPOINT}/original${data.poster_path}`
                         }
                         buttonBookmarkVisible={true}
-                        bookmarked={isBookmarked}
+                        isBookmarked={isBookmarked}
                         refreshBookmarks={refreshBookmarks}
                      />
                   );
