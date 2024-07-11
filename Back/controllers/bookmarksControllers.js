@@ -2,8 +2,9 @@ const BookmarkModel = require('../models/BookmarksModel');
 
 exports.addOrRemoveBookmarks = async (req, res, next) => {
     const userId = req.auth.userId;
-    const { idMedia } = req.body;
+    const { idMedia, mediaType } = req.body;
 
+    console.log('Received data:', { userId, idMedia, mediaType });
     try {
         const existingBookmark = await BookmarkModel.findOne({ userId, movieId: idMedia });
 
@@ -11,7 +12,7 @@ exports.addOrRemoveBookmarks = async (req, res, next) => {
             await BookmarkModel.deleteOne({ _id: existingBookmark._id });
             return res.status(200).send('Bookmark removed');
         } else {
-            const newBookmark = new BookmarkModel({ userId, movieId: idMedia });
+            const newBookmark = new BookmarkModel({ userId, movieId: idMedia, mediaType });
             await newBookmark.save();
             return res.status(200).send('Bookmark added');
         }

@@ -8,11 +8,11 @@ import {
    StyledParagraph,
    StyledFigure,
 } from './GenericCardStyles';
-import { Bookmark } from '@/components/mediaGrid/MediaGrid';
 
 export interface GenericCardProps {
    link?: string;
    idMedia: number;
+   mediaType: string;
    name: string;
    description: string;
    imgPath: string;
@@ -26,6 +26,7 @@ export interface GenericCardProps {
 export default function GenericCard({
    children,
    idMedia,
+   mediaType,
    link,
    name,
    description,
@@ -48,6 +49,7 @@ export default function GenericCard({
          {buttonBookmarkVisible == true && (
             <ButtonBookmark
                idMedia={idMedia}
+               mediaType={mediaType}
                buttonCard={true}
                isBookmarked={isBookmarked}
                refreshBookmarks={refreshBookmarks}

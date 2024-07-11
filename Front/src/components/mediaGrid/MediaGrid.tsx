@@ -1,7 +1,6 @@
 import { MovieResult, TvResult } from '@/type';
 import { StyledContainer, StyledGridResults, StyledParagraph } from './MediaGridStyles';
 import ClassicCard from '../shared/cards/classicCard/ClassicCard';
-import useBookmarks from '@/hooks/useBookmarks';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -59,32 +58,37 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
    return (
       <StyledContainer>
          <StyledParagraph>{titleSection}</StyledParagraph>
-         <StyledGridResults>
-            {dataMedia
-               .sort((a, b) => b.popularity - a.popularity)
-               .map((data) => {
-                  const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId === data.id.toString());
-                  return (
-                     <ClassicCard
-                        key={data.id}
-                        idMedia={data.id}
-                        link={`/${data.media_type}/${data.id}`}
-                        name={data.title || data.name}
-                        description={`${formatDate(data.release_date)}
+         {dataMedia.length === 0 ? (
+            <StyledParagraph>No results found</StyledParagraph>
+         ) : (
+            <StyledGridResults>
+               {dataMedia
+                  .sort((a, b) => b.popularity - a.popularity)
+                  .map((data) => {
+                     const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId === data.id.toString());
+                     return (
+                        <ClassicCard
+                           key={data.id}
+                           idMedia={data.id}
+                           mediaType={data.media_type}
+                           link={`/${data.media_type}/${data.id}`}
+                           name={data.title || data.name}
+                           description={`${formatDate(data.release_date)}
                         ${data.media_type} -
                         ${data.original_language && data.original_language.toUpperCase()}`}
-                        imgPath={
-                           data.backdrop_path
-                              ? `${IMAGE_ENDPOINT}/original${data.backdrop_path}`
-                              : `${IMAGE_ENDPOINT}/original${data.poster_path}`
-                        }
-                        buttonBookmarkVisible={true}
-                        isBookmarked={isBookmarked}
-                        refreshBookmarks={refreshBookmarks}
-                     />
-                  );
-               })}
-         </StyledGridResults>
+                           imgPath={
+                              data.backdrop_path
+                                 ? `${IMAGE_ENDPOINT}/original${data.backdrop_path}`
+                                 : `${IMAGE_ENDPOINT}/original${data.poster_path}`
+                           }
+                           buttonBookmarkVisible={true}
+                           isBookmarked={isBookmarked}
+                           refreshBookmarks={refreshBookmarks}
+                        />
+                     );
+                  })}
+            </StyledGridResults>
+         )}
       </StyledContainer>
    );
 }

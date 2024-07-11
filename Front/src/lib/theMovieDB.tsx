@@ -54,9 +54,15 @@ export async function getTvByPopularity() {
 export async function findById(id: number, mediaType: string) {
    try {
       const res = await fetch(`https://api.themoviedb.org/3/${mediaType}/${id}?api_key=${API_KEY}&language=fr-FR`);
-      return await res.json();
+      const data = await res.json();
+      const mediaWithAddedType = {
+         ...data,
+         media_type: mediaType,
+      };
+      return mediaWithAddedType;
    } catch (err) {
-      return console.error(err);
+      console.error(err);
+      return null;
    }
 }
 
@@ -72,15 +78,6 @@ export async function getMovieCast(id: number) {
 export async function getMovieTrailer(id: number) {
    try {
       const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`);
-      return await res.json();
-   } catch (err) {
-      return console.error(err);
-   }
-}
-
-export async function getBookmarks(id: string) {
-   try {
-      const res = await fetch(`http://localhost:3000/api/bookmarks/getBookmarks/${id}`);
       return await res.json();
    } catch (err) {
       return console.error(err);

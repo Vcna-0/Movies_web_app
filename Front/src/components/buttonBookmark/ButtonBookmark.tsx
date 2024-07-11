@@ -1,19 +1,24 @@
 import { HiMiniBookmark, HiOutlineBookmark } from 'react-icons/hi2';
 import { StyledButtonBookmark } from './ButtonBookmarkStyle';
-import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Bookmark } from '../mediaGrid/MediaGrid';
 
 export type ButtonBookmarkProps = {
    idMedia: number;
+   mediaType: string;
    buttonCard?: boolean;
    isBookmarked?: boolean;
    refreshBookmarks?: () => void;
 };
 
-export default function ButtonBookmark({ idMedia, buttonCard, isBookmarked, refreshBookmarks }: ButtonBookmarkProps) {
+export default function ButtonBookmark({
+   idMedia,
+   mediaType,
+   buttonCard,
+   isBookmarked,
+   refreshBookmarks,
+}: ButtonBookmarkProps) {
    const { user } = useAuth();
    const navigate = useNavigate();
    const token = localStorage.getItem('token');
@@ -23,11 +28,10 @@ export default function ButtonBookmark({ idMedia, buttonCard, isBookmarked, refr
          navigate('/login');
          return;
       }
-
       try {
          const response = await axios.post(
             'http://localhost:3000/api/bookmarks/addBookmarks',
-            { idMedia },
+            { idMedia, mediaType },
             {
                headers: {
                   Authorization: `Bearer ${token}`,
@@ -36,7 +40,6 @@ export default function ButtonBookmark({ idMedia, buttonCard, isBookmarked, refr
          );
 
          if (response.status === 200) {
-            console.log('test');
             if (refreshBookmarks) {
                refreshBookmarks();
             }
@@ -47,8 +50,12 @@ export default function ButtonBookmark({ idMedia, buttonCard, isBookmarked, refr
    };
 
    return (
-      <StyledButtonBookmark idMedia={idMedia} buttonCard={buttonCard} onClick={handleBookmarkClick}>
-         {/* {isBookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />} */}
+      <StyledButtonBookmark
+         idMedia={idMedia}
+         mediaType={mediaType}
+         buttonCard={buttonCard}
+         onClick={handleBookmarkClick}
+      >
          {isBookmarked ? <HiMiniBookmark /> : <HiOutlineBookmark />}
       </StyledButtonBookmark>
    );

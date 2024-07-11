@@ -31,6 +31,7 @@ export default function Home() {
    useEffect(() => {
       getTvByPopularity().then(setPopularTvList).catch(console.error);
    }, []);
+
    return (
       <StyledHomePage>
          <Menu />

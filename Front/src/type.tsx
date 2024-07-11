@@ -53,6 +53,12 @@ export interface CastingsType {
    title: string;
 }
 
+export interface Bookmark {
+   movieId: number;
+   id: number;
+   mediaType: string;
+}
+
 export type SliderMovieType = MovieResult | TvResult;
 
 export type SliderCastingsType = CastingsType;
