@@ -2,6 +2,8 @@ import MediaGrid from '@/components/mediaGrid/MediaGrid';
 import { useEffect, useState } from 'react';
 import { MovieResult, TvResult, Bookmark } from '@/type';
 import { fetchBookmarks, fetchBookmarksByIdAndType } from '@/lib/bookmarkService';
+import Menu from '@/components/menu/Menu';
+import { StyledHomePage, StyledMain } from './PagesStyles';
 
 export default function Bookmarks() {
    const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
@@ -19,9 +21,12 @@ export default function Bookmarks() {
    }, [bookmarks]);
 
    return (
-      <>
-         <MediaGrid titleSection="Movies" dataMedia={movieResult} typeCard="classicCard" />
-         <MediaGrid titleSection="Tv" dataMedia={tvResult} typeCard="classicCard" />
-      </>
+      <StyledHomePage>
+         <Menu />
+         <StyledMain>
+            <MediaGrid titleSection="Movies" dataMedia={movieResult} typeCard="classicCard" />
+            <MediaGrid titleSection="Tv" dataMedia={tvResult} typeCard="classicCard" />
+         </StyledMain>
+      </StyledHomePage>
    );
 }
