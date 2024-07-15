@@ -90,7 +90,7 @@ export default function MediaDetails() {
                            : ''}
                         )
                      </StyledTitle>
-                     <ButtonBookmark />
+                     <ButtonBookmark idMedia={infosMedia.id} mediaType={infosMedia.media_type} />
                   </StyledTitleContainer>
                   <StyledImg src={`${IMAGE_ENDPOINT}/original${infosMedia.poster_path}`} alt="" />
                   <StyledInfoContainer>
@@ -120,8 +120,6 @@ export default function MediaDetails() {
                   </StyledSynopsisContainer>
                </StyledMainInformations>
                <CastingSlider data={casting} />
-               {/* <CastingCard name={'nom'} description={'description'} imgPath={'test'} /> */}
-               {/* <GenericCard name={'nom'} description={'description'} imgPath={'test'}></GenericCard> */}
             </StyledMain>
          )}
       </div>

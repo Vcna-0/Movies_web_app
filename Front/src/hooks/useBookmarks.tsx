@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { BookmarkContext } from '@/context/BookmarksContext.tsx';
+import { BookmarkContext } from '@/context/BookmarksContext';
 
-const useBookmarks = () => {
+export const useBookmarks = () => {
    const context = useContext(BookmarkContext);
    if (!context) {
       throw new Error('useBookmarks must be used within a BookmarkProvider');

@@ -1,22 +1,19 @@
 import MediaGrid from '@/components/mediaGrid/MediaGrid';
-import { useEffect, useState } from 'react';
-import { MovieResult, TvResult, Bookmark } from '@/type';
-import { fetchBookmarks, fetchBookmarksByIdAndType } from '@/lib/bookmarkService';
+import { useEffect } from 'react';
 import Menu from '@/components/menu/Menu';
 import { StyledHomePage, StyledMain } from './PagesStyles';
+import useBookmarks from '@/hooks/useBookmarks';
 
 export default function Bookmarks() {
-   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
-   const [movieResult, setMovieResult] = useState<MovieResult[]>([]);
-   const [tvResult, setTvResult] = useState<TvResult[]>([]);
+   const { bookmarks, movieResult, tvResult, refreshBookmarks, fetchBookmarksByIdAndType } = useBookmarks();
 
    useEffect(() => {
-      fetchBookmarks(setBookmarks);
+      refreshBookmarks();
    }, []);
 
    useEffect(() => {
       if (bookmarks.length > 0) {
-         fetchBookmarksByIdAndType(bookmarks, setMovieResult, setTvResult);
+         fetchBookmarksByIdAndType();
       }
    }, [bookmarks]);
 

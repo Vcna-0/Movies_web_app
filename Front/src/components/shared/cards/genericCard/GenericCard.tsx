@@ -20,7 +20,6 @@ export interface GenericCardProps {
    isBookmarked?: boolean;
    className?: string;
    children?: React.ReactNode;
-   refreshBookmarks?: () => void;
 }
 
 export default function GenericCard({
@@ -34,7 +33,6 @@ export default function GenericCard({
    buttonBookmarkVisible,
    isBookmarked,
    className,
-   refreshBookmarks,
 }: GenericCardProps) {
    return (
       <StyledFigure className={className}>
@@ -47,13 +45,7 @@ export default function GenericCard({
             </StyledFigcaption>
          </StyledCardLink>
          {buttonBookmarkVisible == true && (
-            <ButtonBookmark
-               idMedia={idMedia}
-               mediaType={mediaType}
-               buttonCard={true}
-               isBookmarked={isBookmarked}
-               refreshBookmarks={refreshBookmarks}
-            />
+            <ButtonBookmark idMedia={idMedia} mediaType={mediaType} buttonCard={true} isBookmarked={isBookmarked} />
          )}
       </StyledFigure>
    );

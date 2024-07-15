@@ -1,10 +1,8 @@
 import { MovieResult, TvResult } from '@/type';
 import { StyledContainer, StyledGridResults, StyledParagraph } from './MediaGridStyles';
 import ClassicCard from '../shared/cards/classicCard/ClassicCard';
-
-import { useEffect, useState } from 'react';
-import { fetchBookmarks } from '@/lib/bookmarkService';
-import { Bookmark } from '@/type';
+import { useEffect } from 'react';
+import { useBookmarks } from '@/hooks/useBookmarks';
 
 type Props = {
    dataMedia: Array<MovieResult | TvResult>;
@@ -19,11 +17,7 @@ const formatDate = (date: string) => {
 };
 
 export default function MediaGrid({ dataMedia, titleSection }: Props) {
-   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
-
-   const refreshBookmarks = () => {
-      fetchBookmarks(setBookmarks);
-   };
+   const { bookmarks, refreshBookmarks } = useBookmarks();
 
    useEffect(() => {
       refreshBookmarks();
@@ -57,7 +51,6 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
                            }
                            buttonBookmarkVisible={true}
                            isBookmarked={isBookmarked}
-                           refreshBookmarks={refreshBookmarks}
                         />
                      );
                   })}

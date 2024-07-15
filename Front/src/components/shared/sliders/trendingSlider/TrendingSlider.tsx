@@ -1,19 +1,16 @@
 // import GenericSlider from '@components/shared/sliders/genericSlider/GenericSlider';
 import SliderCard from '@components/shared/cards/sliderCard/SliderCard';
-import { Bookmark, SliderMovieType } from '@/type';
+import { SliderMovieType } from '@/type';
 import { TrendingSliderStyles } from './TrendingSliderStyles';
 import { StyledCard } from '../trendingSlider/TrendingSliderStyles';
-import { useEffect, useState } from 'react';
-import { fetchBookmarks } from '@/lib/bookmarkService';
+import { useEffect } from 'react';
+
+import useBookmarks from '@/hooks/useBookmarks';
 
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
 export default function TrendingSlider({ data }: { data: SliderMovieType[] }) {
-   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
-
-   const refreshBookmarks = () => {
-      fetchBookmarks(setBookmarks);
-   };
+   const { bookmarks, refreshBookmarks } = useBookmarks();
 
    useEffect(() => {
       refreshBookmarks();

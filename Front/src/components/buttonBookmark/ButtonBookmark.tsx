@@ -1,6 +1,7 @@
 import { HiMiniBookmark, HiOutlineBookmark } from 'react-icons/hi2';
 import { StyledButtonBookmark } from './ButtonBookmarkStyle';
 import { useAuth } from '@/hooks/useAuth';
+import { useBookmarks } from '@/hooks/useBookmarks';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,19 +10,13 @@ export type ButtonBookmarkProps = {
    mediaType: string;
    buttonCard?: boolean;
    isBookmarked?: boolean;
-   refreshBookmarks?: () => void;
 };
 
-export default function ButtonBookmark({
-   idMedia,
-   mediaType,
-   buttonCard,
-   isBookmarked,
-   refreshBookmarks,
-}: ButtonBookmarkProps) {
+export default function ButtonBookmark({ idMedia, mediaType, buttonCard, isBookmarked }: ButtonBookmarkProps) {
    const { user } = useAuth();
    const navigate = useNavigate();
    const token = localStorage.getItem('token');
+   const { refreshBookmarks } = useBookmarks();
 
    const handleBookmarkClick = async () => {
       if (!user) {
