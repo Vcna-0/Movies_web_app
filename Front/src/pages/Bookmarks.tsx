@@ -24,8 +24,8 @@ export default function Bookmarks() {
       <StyledHomePage>
          <Menu />
          <StyledMain>
-            <MediaGrid titleSection="Movies" dataMedia={movieResult} typeCard="classicCard" />
-            <MediaGrid titleSection="Tv" dataMedia={tvResult} typeCard="classicCard" />
+            <MediaGrid titleSection="Movies bookmarks" dataMedia={movieResult} typeCard="classicCard" />
+            <MediaGrid titleSection="Tv bookmarks" dataMedia={tvResult} typeCard="classicCard" />
          </StyledMain>
       </StyledHomePage>
    );

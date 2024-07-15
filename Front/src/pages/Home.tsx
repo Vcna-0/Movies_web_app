@@ -24,6 +24,8 @@ export default function Home() {
       getTrending().then(setTrendingList).catch(console.error);
    }, []);
 
+   console.log('trendingList', trendingList);
+
    useEffect(() => {
       getMovieByPopularity().then(setPopularMovieList).catch(console.error);
    }, []);

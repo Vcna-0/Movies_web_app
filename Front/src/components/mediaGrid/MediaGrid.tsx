@@ -1,8 +1,10 @@
 import { MovieResult, TvResult } from '@/type';
 import { StyledContainer, StyledGridResults, StyledParagraph } from './MediaGridStyles';
 import ClassicCard from '../shared/cards/classicCard/ClassicCard';
-import axios from 'axios';
+
 import { useEffect, useState } from 'react';
+import { fetchBookmarks } from '@/lib/bookmarkService';
+import { Bookmark } from '@/type';
 
 type Props = {
    dataMedia: Array<MovieResult | TvResult>;
@@ -10,39 +12,13 @@ type Props = {
    titleSection: React.ReactNode;
 };
 
-export interface Bookmark {
-   movieId: number | string;
-   id: number;
-}
-
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
 const formatDate = (date: string) => {
    return date ? `${date.substring(0, 4)} - ` : '';
 };
 
-// =============================
-
-export const fetchBookmarks = async (setBookmarks: React.Dispatch<React.SetStateAction<Bookmark[]>>) => {
-   const token = localStorage.getItem('token');
-   if (!token) return;
-
-   try {
-      const response = await axios.get('http://localhost:3000/api/bookmarks/getBookmarks', {
-         headers: {
-            Authorization: `Bearer ${token}`,
-         },
-      });
-      setBookmarks(response.data);
-   } catch (error) {
-      console.error('Error fetching bookmarks:', error);
-   }
-};
-
-// =============================
-
 export default function MediaGrid({ dataMedia, titleSection }: Props) {
-   // =============================
    const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
 
    const refreshBookmarks = () => {
@@ -52,8 +28,6 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
    useEffect(() => {
       refreshBookmarks();
    }, []);
-
-   // =============================
 
    return (
       <StyledContainer>
@@ -65,7 +39,7 @@ export default function MediaGrid({ dataMedia, titleSection }: Props) {
                {dataMedia
                   .sort((a, b) => b.popularity - a.popularity)
                   .map((data) => {
-                     const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId === data.id.toString());
+                     const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId == data.id);
                      return (
                         <ClassicCard
                            key={data.id}
