@@ -48,9 +48,7 @@ L'utilisateur doit pouvoir :
 
 ### Fonctionnalités encore manquantes
 
-- L'authentification
-- La possibilité d'ajouter un film ou une série en favoris
-- La page d'information du film
+- La page d'informations détaillées du film (en cour)
 
 ### Éléments fournis pour la réalisation du projet
 
