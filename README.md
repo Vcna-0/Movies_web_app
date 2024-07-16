@@ -49,6 +49,8 @@ L'utilisateur doit pouvoir :
 ### Fonctionnalités encore manquantes
 
 - La page d'informations détaillées du film (en cour)
+- Conteneurisation du projet avec Docker
+- Déploiement  
 
 ### Éléments fournis pour la réalisation du projet
 
