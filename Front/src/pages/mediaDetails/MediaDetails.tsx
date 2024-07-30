@@ -33,6 +33,7 @@ export default function MediaDetails() {
    const [notFound, setNotFound] = useState(false);
    const [infosMedia, setInfosMedia] = useState<MediaDetailsType | null>(null);
    const [casting, setCasting] = useState([]);
+
    useEffect(() => {
       const idAsNumber = parseInt(id ?? '', 10);
       if (!isNaN(idAsNumber)) {

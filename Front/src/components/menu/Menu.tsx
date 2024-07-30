@@ -1,8 +1,23 @@
 import logo from '@assets/MovieIcon.svg';
 import { StyledMenuWrapper, StyledNav, StyledSvg, StyledButton, StyledNavLink } from './MenuStyles';
-import iconProfile from '@assets/OvalProfil.svg';
+import { SlLogin, SlLogout } from 'react-icons/sl';
+import { useAuth } from '@/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import { IconContext } from 'react-icons';
 
 export default function Menu() {
+   const { user, logout } = useAuth();
+   const navigate = useNavigate();
+
+   const handleButtonClick = () => {
+      if (user) {
+         logout();
+         navigate(0);
+      } else {
+         navigate('/login');
+      }
+   };
+
    return (
       <StyledMenuWrapper>
          <img src={logo} alt="" />
@@ -49,9 +64,9 @@ export default function Menu() {
                </StyledSvg>
             </StyledNavLink>
          </StyledNav>
-         <StyledButton>
-            <img src={iconProfile}></img>
-         </StyledButton>
+         <IconContext.Provider value={{ color: '#5A698F', size: '20px' }}>
+            <StyledButton onClick={handleButtonClick}>{user ? <SlLogout /> : <SlLogin />}</StyledButton>
+         </IconContext.Provider>
       </StyledMenuWrapper>
    );
 }
