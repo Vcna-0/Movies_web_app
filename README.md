@@ -1,8 +1,8 @@
-# Formation developpeur web - OPENCLASSROOM
+# Frontend Mentor - Movies web app
 
 Ma solution au challenge de __frontend mentor__.
 
-![Logo](chemin du logo) 
+![Logo](Front/src/assets/MovieIcon.svg) 
 
 ## Table des matières
 
@@ -26,6 +26,12 @@ Ma solution au challenge de __frontend mentor__.
 
 1. Cloner le projet
 2. `npm install` puis `npm run dev` dans les dossiers Front et Back
+3. Créer un fichier `.env.local`
+4. ajouter :`
+VITE_APP_API_KEY = votreCléApiTheMovieDB
+VITE_APP_TMDB_ENDPOINT = "https://api.themoviedb.org/3"
+VITE_APP_TMDB_IMAGE_ENDPOINT = "https://image.tmdb.org/t/p"
+VITE_YT_API_KEY = votreCléApiYoutube`  
 
 ### Contexte du projet
 
@@ -42,9 +48,9 @@ L'utilisateur doit pouvoir :
 
 ### Fonctionnalités encore manquantes
 
-- L'authentification
-- La possibilité d'ajouter un film ou une série en favoris
-- La page d'information du film
+- La page d'informations détaillées du film (en cour)
+- Conteneurisation du projet avec Docker
+- Déploiement  
 
 ### Éléments fournis pour la réalisation du projet
 
