@@ -22,13 +22,17 @@ import {
 } from './MediaDetailsStyles';
 import React from 'react';
 import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
+import useBookmarks from '@/hooks/useBookmarks';
 
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
 export default function MediaDetails() {
    const { id } = useParams<{ id?: string }>();
    const { type } = useParams<{ type?: string }>();
+   const { bookmarks } = useBookmarks();
+
    const [numericId, setNumericId] = useState<number | null>(null);
+   const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId == numericId);
 
    const [notFound, setNotFound] = useState(false);
    const [infosMedia, setInfosMedia] = useState<MediaDetailsType | null>(null);
@@ -90,7 +94,11 @@ export default function MediaDetails() {
                            : ''}
                         )
                      </StyledTitle>
-                     <ButtonBookmark idMedia={infosMedia.id} mediaType={infosMedia.media_type} />
+                     <ButtonBookmark
+                        idMedia={infosMedia.id}
+                        mediaType={infosMedia.media_type}
+                        isBookmarked={isBookmarked}
+                     />
                   </StyledTitleContainer>
                   <StyledImg src={`${IMAGE_ENDPOINT}/original${infosMedia.poster_path}`} alt="" />
                   <StyledInfoContainer>
