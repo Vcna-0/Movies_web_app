@@ -11,6 +11,7 @@ module.exports = (req, res, next) => {
         };
         next()
     } catch (error) {
+        console.error('Error in auth middleware:', error);
         res.status(401).json({error: 'Requête non authentifiée !'});
     }
 }

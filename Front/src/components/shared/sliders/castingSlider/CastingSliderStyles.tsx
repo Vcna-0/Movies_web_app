@@ -4,10 +4,10 @@ import { CastingsType } from '@/type';
 
 const TypedGenericSlider = GenericSlider as React.ComponentType<GenericSliderProps<{ id: React.Key } & CastingsType>>;
 
-export const StyledCastingSlider = styled(TypedGenericSlider)``;
+export const StyledCastingSlider = styled(TypedGenericSlider)`
+   max-width: 100%;
+`;
 
-// DIV qui contient UNE card, a adapter en fonction du slider
-export const StyledTest = styled.div`
-   /* min-width: 129px; */
-   flex: 0 0 29%;
+export const StyledCard = styled.div`
+   width: 129px;
 `;

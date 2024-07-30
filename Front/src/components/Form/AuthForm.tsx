@@ -12,6 +12,7 @@ import {
 } from './AuthFormStyles.tsx';
 import { StyledTitle } from '../../styles/globalStyle.tsx';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth.tsx';
 
 type Inputs = {
    email: string;
@@ -25,6 +26,7 @@ type Props = {
 
 const AuthForm = ({ mode }: Props) => {
    const navigate = useNavigate();
+   const { login } = useAuth();
 
    const {
       register,
@@ -38,7 +40,9 @@ const AuthForm = ({ mode }: Props) => {
       const { email, password } = data;
 
       try {
-         await axios.post(`http://localhost:3000/api/auth/${mode}`, { email, password });
+         const response = await axios.post(`http://localhost:3000/api/auth/${mode}`, { email, password });
+         const token = response.data.token;
+         login(token);
          navigate('/');
       } catch (error) {
          if (axios.isAxiosError(error)) {

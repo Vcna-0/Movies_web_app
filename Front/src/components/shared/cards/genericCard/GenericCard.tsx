@@ -11,21 +11,27 @@ import {
 
 export interface GenericCardProps {
    link?: string;
+   idMedia: number;
+   mediaType: string;
    name: string;
    description: string;
    imgPath: string;
-   bookmark?: boolean;
+   buttonBookmarkVisible?: boolean;
+   isBookmarked?: boolean;
    className?: string;
    children?: React.ReactNode;
 }
 
 export default function GenericCard({
    children,
+   idMedia,
+   mediaType,
    link,
    name,
    description,
    imgPath,
-   bookmark,
+   buttonBookmarkVisible,
+   isBookmarked,
    className,
 }: GenericCardProps) {
    return (
@@ -38,7 +44,9 @@ export default function GenericCard({
                <StyledParagraph>{description}</StyledParagraph>
             </StyledFigcaption>
          </StyledCardLink>
-         {bookmark == true && <ButtonBookmark buttonCard />}
+         {buttonBookmarkVisible == true && (
+            <ButtonBookmark idMedia={idMedia} mediaType={mediaType} buttonCard={true} isBookmarked={isBookmarked} />
+         )}
       </StyledFigure>
    );
 }
