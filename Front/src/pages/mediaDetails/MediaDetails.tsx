@@ -1,10 +1,11 @@
-import { useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useParams, Navigate } from 'react-router';
+import { MediaDetailsType } from '@/type';
 import { findById, getMovieCast } from '@/lib/theMovieDB';
-import { useEffect, useState } from 'react';
 import Menu from '@/components/menu/Menu';
 import ButtonBookmark from '@/components/buttonBookmark/ButtonBookmark';
-import { MediaDetailsType } from '@/type';
-import { Navigate } from 'react-router-dom';
+import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
+import useBookmarks from '@/hooks/useBookmarks';
 import {
    StyledMain,
    StyledTitleContainer,
@@ -20,23 +21,25 @@ import {
    StyledSynopsisContainer,
    StyledMainInformations,
 } from './MediaDetailsStyles';
-import React from 'react';
-import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
-import useBookmarks from '@/hooks/useBookmarks';
 
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
+const getYearFromDateString = (dateString: string): string => dateString.split('-')[0];
+
+function convertLanguageCode(languageCode: string) {
+   const displayName = new Intl.DisplayNames(['fr'], { type: 'language' });
+   return displayName.of(languageCode);
+}
+
 export default function MediaDetails() {
-   const { id } = useParams<{ id?: string }>();
-   const { type } = useParams<{ type?: string }>();
+   const { id, type } = useParams<{ id?: string; type?: string }>();
    const { bookmarks } = useBookmarks();
 
    const [numericId, setNumericId] = useState<number | null>(null);
-   const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId == numericId);
-
    const [notFound, setNotFound] = useState(false);
    const [infosMedia, setInfosMedia] = useState<MediaDetailsType | null>(null);
    const [casting, setCasting] = useState([]);
+
    useEffect(() => {
       const idAsNumber = parseInt(id ?? '', 10);
       if (!isNaN(idAsNumber)) {
@@ -69,14 +72,7 @@ export default function MediaDetails() {
       return <Navigate to="/Error" />;
    }
 
-   function getYearFromDateString(dateString: string) {
-      return dateString.split('-')[0];
-   }
-
-   function convertLanguageCode(languageCode: string) {
-      const displayName = new Intl.DisplayNames(['fr'], { type: 'language' });
-      return displayName.of(languageCode);
-   }
+   const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId == numericId);
 
    return (
       <div>
