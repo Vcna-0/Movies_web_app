@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router';
 import { MediaDetailsType } from '@/type';
-import { findById, getMovieCast } from '@/lib/theMovieDB';
+import { findById, getCasting } from '@/lib/theMovieDB';
 import Menu from '@/components/menu/Menu';
 import ButtonBookmark from '@/components/buttonBookmark/ButtonBookmark';
 import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
@@ -56,7 +56,7 @@ export default function MediaDetails() {
             try {
                const response = await findById(numericId, type);
                setInfosMedia(response);
-               const cast = await getMovieCast(numericId);
+               const cast = await getCasting(numericId, type);
                setCasting(cast.cast);
             } catch (error) {
                console.error(error);
