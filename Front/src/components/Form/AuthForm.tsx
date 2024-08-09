@@ -42,7 +42,9 @@ const AuthForm = ({ mode }: Props) => {
       try {
          const response = await axios.post(`http://localhost:3000/api/${mode}`, { email, password });
          const token = response.data.token;
-         login(token);
+         if (mode === 'login') {
+            login(token);
+         }
          navigate('/');
       } catch (error) {
          if (axios.isAxiosError(error)) {
