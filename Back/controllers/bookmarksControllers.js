@@ -4,7 +4,6 @@ exports.addOrRemoveBookmarks = async (req, res, next) => {
     const userId = req.auth.userId;
     const { idMedia, mediaType } = req.body;
 
-    console.log('Received data:', { userId, idMedia, mediaType });
     try {
         const existingBookmark = await BookmarkModel.findOne({ userId, movieId: idMedia });
 
@@ -23,7 +22,6 @@ exports.addOrRemoveBookmarks = async (req, res, next) => {
 
 exports.getBookmarksByUserId = async (req, res) => {
     const userId = req.auth?.userId;
-
     if (!userId) {
         return res.status(401).json({ error: 'User not authenticated' });
     }

@@ -25,7 +25,7 @@ export default function ButtonBookmark({ idMedia, mediaType, buttonCard, isBookm
       }
       try {
          const response = await axios.post(
-            'http://localhost:3000/api/bookmarks/addBookmarks',
+            'http://localhost:3000/api/addBookmarks',
             { idMedia, mediaType },
             {
                headers: {

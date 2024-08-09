@@ -31,7 +31,7 @@ export const BookmarkProvider: React.FC<{ children: ReactNode }> = ({ children }
       if (!token) return;
 
       try {
-         const response = await axios.get('http://localhost:3000/api/bookmarks/getBookmarks', {
+         const response = await axios.get('http://localhost:3000/api/getBookmarks', {
             headers: {
                Authorization: `Bearer ${token}`,
             },

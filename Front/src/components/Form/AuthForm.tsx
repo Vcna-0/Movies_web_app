@@ -40,7 +40,7 @@ const AuthForm = ({ mode }: Props) => {
       const { email, password } = data;
 
       try {
-         const response = await axios.post(`http://localhost:3000/api/auth/${mode}`, { email, password });
+         const response = await axios.post(`http://localhost:3000/api/${mode}`, { email, password });
          const token = response.data.token;
          login(token);
          navigate('/');
