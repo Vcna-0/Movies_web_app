@@ -1,5 +1,12 @@
 import logo from '@assets/MovieIcon.svg';
-import { StyledMenuWrapper, StyledNav, StyledSvg, StyledButton, StyledNavLink } from './MenuStyles';
+import {
+   StyledMenuWrapper,
+   StyledNav,
+   StyledSvg,
+   StyledContainerButton,
+   StyledButton,
+   StyledNavLink,
+} from './MenuStyles';
 import { SlLogin, SlLogout } from 'react-icons/sl';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -65,7 +72,19 @@ export default function Menu() {
             </StyledNavLink>
          </StyledNav>
          <IconContext.Provider value={{ color: '#5A698F', size: '20px' }}>
-            <StyledButton onClick={handleButtonClick}>{user ? <SlLogout /> : <SlLogin />}</StyledButton>
+            <StyledContainerButton onClick={handleButtonClick}>
+               {user ? (
+                  <StyledButton>
+                     <SlLogout />
+                     <span>Logout</span>
+                  </StyledButton>
+               ) : (
+                  <StyledButton>
+                     <SlLogin />
+                     <span>Login</span>
+                  </StyledButton>
+               )}
+            </StyledContainerButton>
          </IconContext.Provider>
       </StyledMenuWrapper>
    );
