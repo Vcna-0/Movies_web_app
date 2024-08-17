@@ -13,7 +13,7 @@ exports.signup = (req, res, next) => {
             });
             user.save()
                 .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                .catch(() => res.status(400).json({ message: "L'adresse mail renseignée est déjà utilisée." }));
+                .catch(() => res.status(400).json({ message: "L'adresse mail ou mot de passe renseignés sont déjà utilisés." }));
         })
         .catch(error => res.status(500).json({ error }));
 };
@@ -22,7 +22,7 @@ exports.login = (req, res, next) => {
   userModel.findOne({ email: req.body.email })
     .then(user => {
       if (!user) {
-        return res.status(404).json({ error: 'Utilisateur non trouvé !' });
+        return res.status(404).json({ error: 'Identifiants incorrects !' });
       }
       bcrypt.compare(req.body.password, user.password)
         .then(valid => {
@@ -38,7 +38,7 @@ exports.login = (req, res, next) => {
             )
           });
         })
-        .catch(error => res.status(500).json({ error:'erreur' }));
+        .catch(error => res.status(500).json({ error: "Une erreur s'est produite. Veuillez réessayer plus tard." }));
     })
-    .catch(error => res.status(500).json({ error:'erreur' }));
+    .catch(error => res.status(500).json({ error: "Une erreur s'est produite. Veuillez réessayer plus tard." }));
 };

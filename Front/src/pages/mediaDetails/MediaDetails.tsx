@@ -1,10 +1,11 @@
-import { useParams } from 'react-router';
-import { findById, getMovieCast } from '@/lib/theMovieDB';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, Navigate } from 'react-router';
+import { MediaDetailsType } from '@/type';
+import { findById, getCasting } from '@/lib/theMovieDB';
 import Menu from '@/components/menu/Menu';
 import ButtonBookmark from '@/components/buttonBookmark/ButtonBookmark';
-import { MediaDetailsType } from '@/type';
-import { Navigate } from 'react-router-dom';
+import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
+import useBookmarks from '@/hooks/useBookmarks';
 import {
    StyledMain,
    StyledTitleContainer,
@@ -20,16 +21,21 @@ import {
    StyledSynopsisContainer,
    StyledMainInformations,
 } from './MediaDetailsStyles';
-import React from 'react';
-import CastingSlider from '@/components/shared/sliders/castingSlider/CastingSlider';
 
 const IMAGE_ENDPOINT = import.meta.env.VITE_APP_TMDB_IMAGE_ENDPOINT;
 
-export default function MediaDetails() {
-   const { id } = useParams<{ id?: string }>();
-   const { type } = useParams<{ type?: string }>();
-   const [numericId, setNumericId] = useState<number | null>(null);
+const getYearFromDateString = (dateString: string): string => dateString.split('-')[0];
 
+function convertLanguageCode(languageCode: string) {
+   const displayName = new Intl.DisplayNames(['fr'], { type: 'language' });
+   return displayName.of(languageCode);
+}
+
+export default function MediaDetails() {
+   const { id, type } = useParams<{ id?: string; type?: string }>();
+   const { bookmarks } = useBookmarks();
+
+   const [numericId, setNumericId] = useState<number | null>(null);
    const [notFound, setNotFound] = useState(false);
    const [infosMedia, setInfosMedia] = useState<MediaDetailsType | null>(null);
    const [casting, setCasting] = useState([]);
@@ -50,7 +56,7 @@ export default function MediaDetails() {
             try {
                const response = await findById(numericId, type);
                setInfosMedia(response);
-               const cast = await getMovieCast(numericId);
+               const cast = await getCasting(numericId, type);
                setCasting(cast.cast);
             } catch (error) {
                console.error(error);
@@ -66,14 +72,7 @@ export default function MediaDetails() {
       return <Navigate to="/Error" />;
    }
 
-   function getYearFromDateString(dateString: string) {
-      return dateString.split('-')[0];
-   }
-
-   function convertLanguageCode(languageCode: string) {
-      const displayName = new Intl.DisplayNames(['fr'], { type: 'language' });
-      return displayName.of(languageCode);
-   }
+   const isBookmarked = bookmarks.some((bookmark) => bookmark.movieId == numericId);
 
    return (
       <div>
@@ -91,7 +90,11 @@ export default function MediaDetails() {
                            : ''}
                         )
                      </StyledTitle>
-                     <ButtonBookmark idMedia={infosMedia.id} mediaType={infosMedia.media_type} />
+                     <ButtonBookmark
+                        idMedia={infosMedia.id}
+                        mediaType={infosMedia.media_type}
+                        isBookmarked={isBookmarked}
+                     />
                   </StyledTitleContainer>
                   <StyledImg src={`${IMAGE_ENDPOINT}/original${infosMedia.poster_path}`} alt="" />
                   <StyledInfoContainer>
