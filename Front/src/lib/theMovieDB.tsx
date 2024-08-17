@@ -66,9 +66,9 @@ export async function findById(id: number, mediaType: string) {
    }
 }
 
-export async function getMovieCast(id: number) {
+export async function getCasting(id: number, type: string) {
    try {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`);
+      const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${API_KEY}`);
       return await res.json();
    } catch (err) {
       return console.error(err);

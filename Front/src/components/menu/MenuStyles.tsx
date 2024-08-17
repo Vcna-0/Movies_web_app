@@ -10,7 +10,7 @@ export const StyledMenuWrapper = styled.div`
    height: 56px;
    padding: 1.25rem 1rem;
    margin: 0 auto;
-   background: #161d2f;
+   background: var(--clr-SemiDarkBlue);
 
    @media screen and (min-width: 768px) {
       margin-top: 23px;
@@ -47,27 +47,43 @@ export const StyledNav = styled.nav`
 export const StyledSvg = styled.svg`
    &:hover {
       path {
-         fill: #fc4747;
+         fill: var(--clr-Red);
       }
    }
 
    &:focus {
       path {
-         fill: #fff;
+         fill: var(--clr-White);
       }
    }
 `;
 
-export const StyledButton = styled.button`
+export const StyledContainerButton = styled.button`
    background: none;
    border: none;
    cursor: pointer;
 `;
 
+export const StyledButton = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   font-family: var(--font-HeadingMedium);
+   color: var(--clr-White);
+   align-items: center;
+   justify-content: center;
+
+   &:hover {
+      path {
+         fill: var(--clr-Red);
+      }
+   }
+`;
+
 export const StyledNavLink = styled(NavLink)`
    &.linkActive {
       path {
-         fill: white;
+         fill: var(--clr-White);
       }
    }
 `;
